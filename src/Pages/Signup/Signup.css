@@ -1,0 +1,22 @@
+.inputLabel{
+    margin-left: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #010B13;
+    margin-bottom: 5px;
+}
+.inputField{
+    width: 100%;
+    padding: 8px 5px;
+    border: 1.5px #3f41439c solid;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.inputField:focus{
+    /* outline: none; */
+    /* border: 2px solid #7b2cbf; */
+    outline-color:#7b2cbf ;
+    /* background-image: url(''); */
+    }
+
