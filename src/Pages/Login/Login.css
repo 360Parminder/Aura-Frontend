@@ -1,0 +1,82 @@
+.landing{
+    background-image: url('../../assets/images/landingpage.png');
+    background-size: cover;
+    background-position:top;
+    /* -webkit-box-shadow: -18px -14px 42px 1px rgba(148,151,153,0.47);
+-moz-box-shadow: -18px -14px 42px 1px rgba(148,151,153,0.47);
+box-shadow: -18px -14px 42px 1px rgba(148,151,153,0.47); */
+border-top-left-radius: 20px;
+}
+.imagecontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20vh;
+    --gap: 2rem;
+    --line: 1px;
+    --color: #5e00ec;
+  background: #111213;
+    background-image: linear-gradient(
+        -90deg,
+        transparent calc(var(--gap) - var(--line)),
+        var(--color) calc(var(--gap) - var(--line) + 1px),
+        var(--color) var(--gap)
+      ),
+      linear-gradient(
+        0deg,
+        transparent calc(var(--gap) - var(--line)),
+        var(--color) calc(var(--gap) - var(--line) + 1px),
+        var(--color) var(--gap)
+      );
+    background-size: var(--gap) var(--gap);
+    position: relative;
+  }
+  .imagecontainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(113, 5, 244, 0.221) 0%,rgba(137, 3, 255, 0.176) 25%, rgba(115, 2, 244, 0.187) 50%,rgb(19, 21, 22) 75%, rgb(17, 18, 19) 100%);
+    }
+
+ 
+  .foreground {
+    position: relative;
+    z-index: 1;
+  }
+  
+ 
+.rightside{
+    background: #000000;
+    --gap: 3rem;
+    --line: 1px;
+    --color: rgba(255, 255, 255, 0.2);
+  
+    background-image: linear-gradient(
+        -90deg,
+        transparent calc(var(--gap) - var(--line)),
+        var(--color) calc(var(--gap) - var(--line) + 1px),
+        var(--color) var(--gap)
+      ),
+      linear-gradient(
+        0deg,
+        transparent calc(var(--gap) - var(--line)),
+        var(--color) calc(var(--gap) - var(--line) + 1px),
+        var(--color) var(--gap)
+      );
+    background-size: var(--gap) var(--gap);
+    animation: move 4s linear infinite;
+    
+}
+
+@keyframes move {
+    0% {
+      background-position: 10px 10px;
+    }
+    100% {
+      background-position: 40px 40px;
+    }
+  }
