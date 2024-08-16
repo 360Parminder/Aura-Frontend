@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Login.css'
 import '../../Styles/Global.css'
 import google from '../../assets/images/google.png'
@@ -7,6 +7,9 @@ import twitter from '../../assets/images/twitter.png'
 
 
 const Login = () => {
+    const [email,setEmail]=useState();
+    const [password,setPassword]=useState();
+    const [error,setError]=useState(false);
     function handleSubmit(e){
         alert('Form submitted');
         e.preventDefault();
