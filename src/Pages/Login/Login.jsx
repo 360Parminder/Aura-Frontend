@@ -4,9 +4,12 @@ import '../../Styles/Global.css'
 import google from '../../assets/images/google.png'
 import apple from '../../assets/images/apple.png'
 import twitter from '../../assets/images/twitter.png'
+import { useNavigate } from 'react-router-dom'
+import { BackgroundBeams } from '../../Components/ui/BackgroundBeams'
 
 
 const Login = () => {
+    const navigate =useNavigate();
     const [email,setEmail]=useState();
     const [password,setPassword]=useState();
     const [error,setError]=useState(false);
@@ -16,12 +19,14 @@ const Login = () => {
     }
     return (
         <>
-            <div className='w-screen h-screen bg-black flex flex-row'>
-                <div className='w-full md:w-2/5 h-full bg-[#121415eb] flex flex-col items-center justify-center leftside '>
-                    <div className='w-full md:w-4/5 flex flex-col items-center gap-3 '>
-                        <div className='imagecontainer'>
+         
+            <div className='w-screen h-screen flex flex-row z-10 absolute'>
+            <div className='w-full md:w-2/5 flex justify-center items-center px-10 py-10'>     
+                <div className='w-full h-full flex flex-col items-center justify-center rounded-lg backdrop-blur-sm'>
+                    <div className='w-full md:w-4/5 flex flex-col items-center gap-3'>
+                       
                             <img className='foreground w-20 h-20' src={google} alt="" />
-                        </div>
+                     
                         <h2 className='font-bold text-[30px]'>Welcome back</h2>
                         <p className='text-[#F0F8FF]'>Please enter your details for sign in.</p>
                         <div className='flex flex-row gap-5 '>
@@ -54,12 +59,13 @@ const Login = () => {
                         <button className='bg-[#7b2cbf] text-[#fff] px-[4px] py-[5px] rounded-md text-lg font-semibold mt-4'>Sign in</button>
                         <div className='flex flex-row items-center justify-center gap-2 mt-2'>
                             <p className='text-[#F0F8FF]'>Don't have an account yet?</p>
-                            <a className=' font-semibold' href="#">Sign up</a>
+                            <button onClick={()=>navigate('/')} className=' font-semibold' >Sign up</button>
 
                         </div>
                     </form>
                 </div>
-                <div className='hidden w-3/5 h-full bg-[#000000] md:flex flex-col items-center rightside'>
+                </div>
+                <div className='hidden w-3/5 h-full md:flex flex-col items-center rightside'>
                     <div className='w-3/6 h-1/4 mt-20'>
                         <p className=' text-left font-semibold text-lg'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error numquam perferendis earum optio ipsum tempora ut quam possimus voluptates.</p>
                     </div>
@@ -68,6 +74,9 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+             
+               <BackgroundBeams/>
+              
 
         </>
     )
