@@ -1,5 +1,6 @@
 
 import React from "react";
+import { BoxesCore } from "../Components/ui/background-boxes";
 import { BackgroundBeams } from "../Components/ui/BackgroundBeams";
 
 
@@ -22,7 +23,7 @@ export function BackgroundBeamsDemo() {
           className="rounded-lg border border-neutral-800 focus:ring-2 focus:ring-teal-500 w-full relative z-10 mt-4 bg-neutral-950 placeholder:text-neutral-700"
         />
       </div>
-      <BackgroundBeams/>
+      <BoxesCore/>
     </div>
   );
 }

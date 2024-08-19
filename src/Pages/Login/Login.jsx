@@ -22,7 +22,7 @@ const Login = () => {
          
             <div className='w-screen h-screen flex flex-row z-10 absolute'>
             <div className='w-full md:w-2/5 flex justify-center items-center px-10 py-10'>     
-                <div className='w-full h-full flex flex-col items-center justify-center rounded-lg backdrop-blur-sm'>
+                <div className='w-full h-full flex flex-col items-center justify-center rounded-lg backdrop-blur-sm bg-[#2b2b2b2f]'>
                     <div className='w-full md:w-4/5 flex flex-col items-center gap-3'>
                        
                             <img className='foreground w-20 h-20' src={google} alt="" />

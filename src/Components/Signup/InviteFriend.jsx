@@ -1,10 +1,15 @@
 import React from 'react'
 import '../../Styles/Global.css'
 import invite from '../../assets/images/invite.png'
+import { useNavigate } from 'react-router-dom'
 const InviteFriend = () => {
+
+    const navigate=useNavigate()
     function handleSubmit(e){
-        alert('Form submitted');
+        // alert('Form submitted');
         e.preventDefault();
+        navigate('/socials')
+        
     }
   return (
     <>

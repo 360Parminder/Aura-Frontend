@@ -4,6 +4,9 @@ import './App.css';
 import Email from './Components/Signup/Email';
 import InviteFriend from './Components/Signup/InviteFriend';
 import Password from './Components/Signup/Password';
+import Socials from './Components/Signup/Socials';
+import { BoxesCore } from './Components/ui/background-boxes';
+import { BackgroundBeamsDemo } from './Pages/BackgroundBeamsDemo';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
 
@@ -17,9 +20,11 @@ function App() {
       <Route index element={<Email/>} />
       <Route path='password' element={<Password/>}/>
       <Route path='inviteFriends' element={<InviteFriend/>}/>
+      <Route path='socials' element={<Socials/>}/>
       </Route>
       <Route path="/login" element={<Login/>} />
     </Routes>
+    {/* <BackgroundBeamsDemo/> */}
   
   </BrowserRouter>
 );

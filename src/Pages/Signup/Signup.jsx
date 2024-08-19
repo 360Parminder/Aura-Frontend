@@ -18,8 +18,11 @@ const Signup = () => {
     }
     return (
         <>
-            <div className='md:flex flex-row bg-black' >
-                <div className=' hidden w-2/5 h-screen bg-[#010B13] md:flex justify-center items-center'>
+            <div className='md:flex flex-row'>
+                <div className=' hidden w-2/5 h-screen bg-[#010B13] md:flex flex-col justify-center items-center'>
+                <div>
+                    <img className='w-16 h-16' src={google} alt="" />
+                </div>
                     <div className='flex flex-col gap-7'>
                         <div className='flex flex-row items-center gap-2'>
                             <IonIcon icon={checkmarkCircleOutline} className="text-[35px] text-[#007FFF]" />
@@ -53,8 +56,12 @@ const Signup = () => {
                             <p>Already have an account?</p><button onClick={()=>navigate('/login')}>Login</button>
                         </div>
                     </div>
+                    <div className='w-full my-10 px-10 flex flex-row justify-between'>
+                    <img className='w-16 h-16' src={google} alt="" />
+                    <img className='w-16 h-16' src={google} alt="" />
+                    </div>
                 </div>
-                <div className='flex items-center w-screen md:w-3/5 h-screen flex-col bg-[#171717] p-5 md:p-0'>
+                <div className='flex items-center w-screen md:w-3/5 h-screen flex-col bg-[#1B1B1B] p-5 md:p-0'>
                 <>
                 <Outlet/>
                 </>
