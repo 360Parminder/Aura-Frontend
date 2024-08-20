@@ -7,6 +7,7 @@ import Password from './Components/Signup/Password';
 import Socials from './Components/Signup/Socials';
 import { BoxesCore } from './Components/ui/background-boxes';
 import { BackgroundBeamsDemo } from './Pages/BackgroundBeamsDemo';
+import Layout from './Pages/Layout/Layout';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
 
@@ -15,7 +16,7 @@ function App() {
     <BrowserRouter>
   {/* <Login/> */}
     {/* <Signup/> */}
-    <Routes>
+    {/* <Routes>
       <Route path="/" element={<Signup/>} >
       <Route index element={<Email/>} />
       <Route path='password' element={<Password/>}/>
@@ -23,8 +24,9 @@ function App() {
       <Route path='socials' element={<Socials/>}/>
       </Route>
       <Route path="/login" element={<Login/>} />
-    </Routes>
+    </Routes> */}
     {/* <BackgroundBeamsDemo/> */}
+    <Layout/>
   
   </BrowserRouter>
 );
