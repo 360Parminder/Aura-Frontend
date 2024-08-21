@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
   {/* <Login/> */}
     {/* <Signup/> */}
-    {/* <Routes>
+    <Routes>
       <Route path="/" element={<Signup/>} >
       <Route index element={<Email/>} />
       <Route path='password' element={<Password/>}/>
@@ -24,9 +24,9 @@ function App() {
       <Route path='socials' element={<Socials/>}/>
       </Route>
       <Route path="/login" element={<Login/>} />
-    </Routes> */}
+    </Routes>
     {/* <BackgroundBeamsDemo/> */}
-    <Layout/>
+    {/* <Layout/> */}
   
   </BrowserRouter>
 );
