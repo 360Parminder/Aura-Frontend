@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import aura from '../../assets/images/Aura.png'
+import profilegirl from '../../assets/images/profilegirl.jpeg'
+import profileboy from '../../assets/images/profileboy.jpeg'
 
 const Header = () => {
   const [activeButton, setActiveButton] = useState('Home');
@@ -33,7 +36,7 @@ const Header = () => {
         className="w-screen flex flex-col md:flex-row justify-between items-center px-5 md:px-10 py-3 absolute z-10 bg-transparent"
       >
         <div className="flex justify-between w-full md:w-auto items-center">
-          <img src="" alt="Logo" className="w-10 h-10 md:w-auto md:h-auto" />
+          <img src={aura} alt="Logo" className=" w-[10vw] h-auto" />
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button onClick={toggleMenu} className="text-gray-800 focus:outline-none">
@@ -108,9 +111,9 @@ const Header = () => {
         </motion.div>
 
         {/* User Icon (only shown on md and larger screens) */}
-        <div className="hidden md:flex">
-          <img src="" alt="User Icon" className="w-8 h-8" />
-        </div>
+        <button className="hidden md:flex w-[10vw] justify-end">
+          <img src={profilegirl} alt="User Icon" className="w-16 h-16 rounded-full" />
+        </button>
       </motion.div>
     </>
   );

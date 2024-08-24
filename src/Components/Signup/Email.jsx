@@ -8,13 +8,11 @@ const Email = () => {
     const[firstName,setFirstName]=useState('');
     const[lastName,setLastName]=useState('');
     const[email,setEmail]=useState('');
-    // console.log(firstName.length);
     
     
     function handleSubmit(e){
-        // alert('Form submitted');
         e.preventDefault();
-       navigate('password')
+       navigate('password',{ state: { firstName, lastName, email} })
     }
   return (
     <>
@@ -31,16 +29,16 @@ const Email = () => {
                     </div>
                     <form onSubmit={handleSubmit} className='w-full md:w-2/5 gap-2 flex flex-col' action="">
                         <div className='formFieldDiv'>
-                            <label className='formLabel' for="name">Name*</label>
-                            <input className='formInput' type="text" id="name" name="name" placeholder='Enter your first name' required />
+                            <label className='formLabel' htmlFor="name">Name*</label>
+                            <input onChange={(e)=>setFirstName(e.target.value)} className='formInput' type="text" id="name" name="name" placeholder='Enter your first name' required />
                         </div>
                         <div className='formFieldDiv'>
-                            <label className='formLabel' for="lastname">Last Name*</label>
-                            <input className='formInput' type="text" id="lastname" name="lastname" placeholder='Enter your last name' required />
+                            <label className='formLabel' htmlFor="lastname">Last Name*</label>
+                            <input onChange={(e)=>setLastName(e.target.value)} className='formInput' type="text" id="lastname" name="lastname" placeholder='Enter your last name' required />
                         </div>
                         <div className='formFieldDiv'>
-                            <label className='formLabel' for="email">Email*</label>
-                            <input className='formInput' type="email" id="email" name="email" placeholder='Enter you last name' required />
+                            <label className='formLabel' htmlFor="email">Email*</label>
+                            <input onChange={(e)=>setEmail(e.target.value)} className='formInput' type="email" id="email" name="email" placeholder='Enter you last name' required />
 
                         </div>
                         <button type='submit' className='bg-[#7b2cbf] text-[#fff] px-[4px] py-[5px] rounded-md text-lg font-semibold mt-4' >Continue</button>

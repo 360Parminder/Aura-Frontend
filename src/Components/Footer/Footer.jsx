@@ -4,7 +4,7 @@ import twitter from '../../assets/images/twitter.png'
 export default function Footer({ className = "" }) {
   return (
     <footer
-      className={`font-manrope flex w-full flex-col gap-y-6 bg-neutral-950 px-10 pb-12 pt-24 text-lg leading-normal tracking-[0px] text-neutral-400 ${className}`}
+      className={`font-manrope flex w-full flex-col gap-y-6 bg-neutral-950 px-10 pb-8 pt-24 text-lg leading-normal tracking-[0px] text-neutral-400 ${className}`}
     >
       <nav className="flex flex-wrap items-start justify-center gap-y-[30px] min-[1910px]:flex-nowrap" >
         <section className="flex flex-wrap items-center justify-center gap-y-[30px] font-medium min-[1910px]:flex-nowrap" >
@@ -59,7 +59,7 @@ export default function Footer({ className = "" }) {
         {/* <FooterDivider className="h-px flex-shrink-0" /> */}
       </section>
       <section className="flex flex-wrap items-center justify-between gap-x-[19px] gap-y-3.5 min-[1910px]:flex-nowrap" >
-        <div>@2023 streamvib, All Rights Reserved</div>
+        <div>@2024 Aura, All Rights Reserved</div>
         <div className="flex h-7 flex-wrap items-center justify-center gap-x-[19px] gap-y-3.5 min-[1910px]:flex-nowrap" >
           <button className="text-left">Terms of Use</button>
           {/* <FooterVerticalDivider className="h-7 w-px flex-shrink-0 [min-height:27px]" /> */}

@@ -20,8 +20,8 @@ const CategoriesCard = () => {
           ease: [0.4, 0.0, 0.2, 1],
         }
        }}
-    className='flex flex-col gap-5 rounded-md border-2 border-[#1A1A1A] px-5 py-4 backdrop-blur-sm bg-[#2b2a2a7b]'>
-        <div className=' grid grid-cols-2 gap-2'>
+    className='flex flex-col gap-5 rounded-md border-2 border-[#1A1A1A] px-5 py-4 backdrop-blur bg-transparent'>
+        <div className=' grid grid-cols-2 gap-2 shadow-[#fff] shadow-inner'>
             <img className='w-[100px] h-[100px] rounded-lg' src={movie} alt="" />
             <img className='w-[100px] h-[100px] rounded-lg' src={movie} alt="" />
             <img className='w-[100px] h-[100px] rounded-lg' src={movie} alt="" />

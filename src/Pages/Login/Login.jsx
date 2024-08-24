@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css'
 import '../../Styles/Global.css'
+import Aura from '../../assets/images/Aura.png'
 import google from '../../assets/images/google.png'
 import apple from '../../assets/images/apple.png'
 import twitter from '../../assets/images/twitter.png'
@@ -21,11 +22,11 @@ const Login = () => {
         <>
          
             <div className='w-screen h-screen flex flex-row z-10 absolute'>
-            <div className='w-full md:w-2/5 flex justify-center items-center px-10 py-10'>     
+            <div className='w-full md:w-2/5 flex justify-center items-center px-5 py-5 md:px-10 md:py-10'>     
                 <div className='w-full h-full flex flex-col items-center justify-center rounded-lg backdrop-blur-sm bg-[#2b2b2b2f]'>
                     <div className='w-full md:w-4/5 flex flex-col items-center gap-3'>
                        
-                            <img className='foreground w-20 h-20' src={google} alt="" />
+                            <img className='foreground w-[50vw] md:w-[20vw] h-auto' src={Aura} alt="" />
                      
                         <h2 className='font-bold text-[30px]'>Welcome back</h2>
                         <p className='text-[#F0F8FF]'>Please enter your details for sign in.</p>
@@ -38,7 +39,7 @@ const Login = () => {
                     <div className='flex flex-row' >
                         <p className='seprator'>OR</p>
                     </div>
-                    <form onSubmit={handleSubmit} className='w-full md:w-4/5 flex flex-col gap-2' action="">
+                    <form onSubmit={handleSubmit} className='w-full md:w-4/5 flex flex-col gap-2 px-3' action="">
                         <div className='formFieldDiv'>
                             <label className='formLabel' htmlFor="email">E-mail Address<sup>*</sup></label>
                             <input className='formInput' type='email' name="email" id="email" placeholder='Enter your email .....' />
