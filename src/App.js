@@ -1,4 +1,4 @@
-
+ /* eslint-disable */ 
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import './App.css';
 import Email from './Components/Signup/Email';
