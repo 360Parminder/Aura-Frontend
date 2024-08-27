@@ -13,33 +13,61 @@ import girl4 from '../../assets/images/Profile/girl4.jpeg';
 import girl5 from '../../assets/images/Profile/girl5.jpeg';
 import '../../Styles/Global.css';
 import '../../Styles/Variables.css';
+import axios from 'axios';
+import { ErrorCard, SuccessCard } from '../Cards/NotificationCard/NotificationCard';
+import { authService } from '../../Services/authService';
 
 
 const ProfilePic = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [avatar, setAvatar] = useState();
+    const [apiStatus, setApiStatus] = useState(null);
     const { firstName, lastName, email, confirmPassword, inviteEmails } = location.state || {};
 
     const handleAvatarClick = (selectedAvatar) => {
         setAvatar(selectedAvatar);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         if (avatar) {
-            // You can add additional logic here for form submission
-            alert('Sign up completed!');
-            console.log(firstName, lastName, email, confirmPassword, ...inviteEmails,avatar);
-            
-            // navigate('/finalPage', { state: { firstName, lastName, email, confirmPassword, inviteEmails, avatar } });
+            try {
+                const data = await authService.signup({avatar,firstName,lastName, userEmail:email, password:confirmPassword,inviteEmails });
+            if (data) {
+                // console.log('Logged in successfully:', data);
+                setApiStatus("success")
+                navigate('/login')
+                setTimeout(() => {
+                    setApiStatus(null)
+                }, 3000);
+            } else {
+                setApiStatus('error')
+                setTimeout(() => {
+                    setApiStatus(null)
+                }, 3000);
+            }
+                
+            } catch (error) {
+                console.log(error);
+                setApiStatus('error')
+                setTimeout(() => {
+                    setApiStatus(null)
+                }, 3000);
+            }
         } else {
-            alert('Please select an avatar to complete the sign-up.');
+            setApiStatus('error')
+            setTimeout(() => {
+                setApiStatus(null)
+            }, 3000);
         }
     };
 
     return (
         <>
+         {apiStatus === 'success' && <SuccessCard />}
+         {apiStatus === 'error' && <ErrorCard />}
+        
             <div className='text-center flex flex-col items-center w-full md:w-2/5 gap-3 mt-12'>
                 <img className='w-16 h-16' src={rocket} alt="" />
                 <h2 className='font-bold text-[30px]'>Select Profile Icon</h2>

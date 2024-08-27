@@ -6,14 +6,17 @@ import google from '../../assets/images/google.png'
 import './Signup.css';
 import '../../Styles/Global.css'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+
 const Signup = () => {
     const navigate =useNavigate();
     const location =useLocation();
     const[firstName,setFirstName]=useState('');
     const[lastName,setLastName]=useState('');
     const[email,setEmail]=useState('');
+    const [apiStatus, setApiStatus] = useState('error');
     return (
         <>
+       
             <div className='md:flex flex-row'>
                 <div className=' hidden w-2/5 h-screen bg-[#010B13] md:flex flex-col justify-between items-center'>
                 <div className='flex w-full items-center justify-center my-10 '>

@@ -7,7 +7,6 @@ export const HeroHighlight = ({ children, className, containerClassName }) => {
   let mouseY = useMotionValue(0);
 
   function handleMouseMove({ currentTarget, clientX, clientY }) {
-    console.log(currentTarget,clientX,clientY);
     
     if (!currentTarget) return;
     let { left, top } = currentTarget.getBoundingClientRect();

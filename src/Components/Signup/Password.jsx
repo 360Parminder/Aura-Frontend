@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../../Styles/Global.css';
 import lock from '../../assets/images/lock.png';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ErrorCard, SuccessCard } from '../Cards/NotificationCard/NotificationCard';
 
 const Password = () => {
     const navigate = useNavigate();
@@ -12,6 +13,7 @@ const Password = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState(null);
     const [confirmError, setConfirmError] = useState(null);
+    const [apiStatus, setApiStatus] = useState(null);
 
     // Function to validate password
     const validatePassword = (password) => {
@@ -62,6 +64,8 @@ const Password = () => {
 
     return (
         <>
+         {apiStatus === 'success' && <SuccessCard />}
+         {apiStatus === 'error' && <ErrorCard />}
             <div className='text-center flex flex-col items-center w-full md:w-2/5 gap-3 mt-12'>
                 <img className='w-10 h-10' src={lock} alt="" />
                 <h2 className='font-bold text-[30px]'>Choose a password</h2>

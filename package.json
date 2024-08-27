@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.5",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.28",
     "ionicons": "^7.4.0",
@@ -28,8 +29,8 @@
   },
   "eslintConfig": {
     "rules": {
-    "no-undef": "warn"
-  },
+      "no-undef": "warn"
+    },
     "extends": [
       "react-app",
       "react-app/jest"

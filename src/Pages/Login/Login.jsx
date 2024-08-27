@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.css'
 import '../../Styles/Global.css'
 import Aura from '../../assets/images/Aura.png'
@@ -7,19 +7,42 @@ import apple from '../../assets/images/apple.png'
 import twitter from '../../assets/images/twitter.png'
 import { useNavigate } from 'react-router-dom'
 import { BackgroundBeams } from '../../Components/ui/BackgroundBeams'
-
+import axios from 'axios'
+const {authService} = require('../../Services/authService')
+import { ErrorCard, SuccessCard } from '../../Components/Cards/NotificationCard/NotificationCard';
 
 const Login = () => {
     const navigate =useNavigate();
     const [email,setEmail]=useState();
     const [password,setPassword]=useState();
-    const [error,setError]=useState(false);
-    function handleSubmit(e){
-        alert('Form submitted');
+    const [apiStatus, setApiStatus] = useState(null);
+
+
+    const handleSubmit= async(e)=>{
         e.preventDefault();
+        const data = await authService.login({ userEmail:email, password });
+
+        if (data) {
+            console.log('Logged in successfully:', data);
+            setApiStatus('success')
+            navigate('/HomePage');
+        } else {
+         setApiStatus("error")
+        }
     }
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setApiStatus(null);
+        }, 3000); // 3 seconds
+    
+        return () => clearTimeout(timer); 
+    }, [apiStatus]);
+    
+  
     return (
         <>
+          {apiStatus === 'success' && <SuccessCard />}
+          {apiStatus === 'error' && <ErrorCard />}
          
             <div className='w-screen h-screen flex flex-row z-10 absolute'>
             <div className='w-full md:w-2/5 flex justify-center items-center px-5 py-5 md:px-10 md:py-10'>     
@@ -42,11 +65,11 @@ const Login = () => {
                     <form onSubmit={handleSubmit} className='w-full md:w-4/5 flex flex-col gap-2 px-3' action="">
                         <div className='formFieldDiv'>
                             <label className='formLabel' htmlFor="email">E-mail Address<sup>*</sup></label>
-                            <input className='formInput' type='email' name="email" id="email" placeholder='Enter your email .....' />
+                            <input onChange={(e)=>setEmail(e.target.value)} className='formInput' type='email' name="email" id="email" placeholder='Enter your email .....' />
                         </div>
                         <div className='formFieldDiv'>
                             <label className='formLabel' htmlFor="password" >Password<sup>*</sup></label>
-                            <input className='formInput placeholder:text-2xl' type="password" name="password" id="password" placeholder='••••••••' />
+                            <input onChange={(e)=>setPassword(e.target.value)} className='formInput placeholder:text-2xl' type="password" name="password" id="password" placeholder='••••••••' />
                         </div>
                         <div className='flex flex-row justify-between'>
                                <div className='flex flex-row gap-1'>

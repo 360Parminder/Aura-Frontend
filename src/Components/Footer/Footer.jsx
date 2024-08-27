@@ -1,12 +1,13 @@
 import twitter from '../../assets/images/twitter.png'
+import '../../Styles/Global.css'
 
 
 export default function Footer({ className = "" }) {
   return (
     <footer
-      className={`font-manrope flex w-full flex-col gap-y-6 bg-neutral-950 px-10 pb-8 pt-24 text-lg leading-normal tracking-[0px] text-neutral-400 ${className}`}
+      className={`font-manrope flex w-full flex-col gap-y-6 bg-neutral-950 px-10 pb-8 pt-24 text-lg leading-normal tracking-[0px] text-neutral-400  ${className}`}
     >
-      <nav className="flex flex-wrap items-start justify-center gap-y-[30px] min-[1910px]:flex-nowrap" >
+      <nav className="flex flex-wrap items-start justify-center gap-y-[30px] min-[1910px]:flex-nowrap appear" >
         <section className="flex flex-wrap items-center justify-center gap-y-[30px] font-medium min-[1910px]:flex-nowrap" >
           {/* <HomeMenu className="w-60" />
           <MoviesMenu className="w-60" />

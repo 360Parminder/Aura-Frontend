@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../../Styles/Global.css';
 import invite from '../../assets/images/invite.png';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ErrorCard, SuccessCard } from '../Cards/NotificationCard/NotificationCard';
 
 const InviteFriend = () => {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const InviteFriend = () => {
   
   // State to store three emails
   const [inviteEmails, setInviteEmails] = useState(['', '', '']);
+  const [apiStatus, setApiStatus] = useState(null);
 
   // Function to handle email input changes
   const handleEmailChange = (index, value) => {
@@ -24,6 +26,8 @@ const InviteFriend = () => {
 
   return (
     <>
+     {apiStatus === 'success' && <SuccessCard />}
+     {apiStatus === 'error' && <ErrorCard />}
       <div className='text-center flex flex-col items-center w-full md:w-2/5 gap-3 mt-12'>
         <img className='w-16 h-16' src={invite} alt="" />
         <h2 className='font-bold text-[30px]'>Invite your friends</h2>

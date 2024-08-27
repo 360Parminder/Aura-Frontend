@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import flag from '../../assets/images/flag.png'
 import google from '../../assets/images/google.png'
+import { ErrorCard, SuccessCard } from '../Cards/NotificationCard/NotificationCard'
 const Email = () => {
     const navigate = useNavigate()
     const[firstName,setFirstName]=useState('');
     const[lastName,setLastName]=useState('');
     const[email,setEmail]=useState('');
-    
+    const [apiStatus, setApiStatus] = useState(null);
+
     
     function handleSubmit(e){
         e.preventDefault();
@@ -16,6 +18,8 @@ const Email = () => {
     }
   return (
     <>
+     {apiStatus === 'success' && <SuccessCard />}
+     {apiStatus === 'error' && <ErrorCard />}
      <div className=' text-center flex flex-col items-center w-full md:w-2/5 gap-3 mt-12'>
                         <img className='w-10 h-10' src={flag} alt="" />
                         <h2 className=' font-bold text-[30px]'>
@@ -38,7 +42,7 @@ const Email = () => {
                         </div>
                         <div className='formFieldDiv'>
                             <label className='formLabel' htmlFor="email">Email*</label>
-                            <input onChange={(e)=>setEmail(e.target.value)} className='formInput' type="email" id="email" name="email" placeholder='Enter you last name' required />
+                            <input onChange={(e)=>setEmail(e.target.value)} className='formInput' type="email" id="email" name="email" placeholder='Enter you email' required />
 
                         </div>
                         <button type='submit' className='bg-[#7b2cbf] text-[#fff] px-[4px] py-[5px] rounded-md text-lg font-semibold mt-4' >Continue</button>

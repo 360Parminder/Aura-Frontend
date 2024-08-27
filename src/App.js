@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
   {/* <Login/> */}
     {/* <Signup/> */}
-    <Routes>
+    {/* <Routes>
       <Route path="/" element={<Signup/>} >
       <Route index element={<Email/>} />
       <Route path='password' element={<Password/>}/>
@@ -24,9 +24,11 @@ function App() {
       <Route path='Avatar' element={<ProfilePic/>}/>
       </Route>
       <Route path="/login" element={<Login/>} />
-    </Routes>
+      <Route path="/HomePage" element={<Layout/>} />
+
+    </Routes> */}
     {/* <BackgroundBeamsDemo/> */}
-    {/* <Layout/> */}
+    <Layout/>
   
   </BrowserRouter>
 );
