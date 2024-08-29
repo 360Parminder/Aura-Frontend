@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { motion } from 'framer-motion';
 import aura from '../../assets/images/Aura.png'
 import profilegirl from '../../assets/images/profilegirl.jpeg'
 import profileboy from '../../assets/images/profileboy.jpeg'
+import { AuthContext } from '../../Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate =useNavigate();
   const [activeButton, setActiveButton] = useState('Home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const {isAuthenticated} = useContext(AuthContext)
+  // console.log(isAuthenticated);
+  
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
     setIsMenuOpen(false); // Close the menu when a button is clicked
@@ -33,7 +38,7 @@ const Header = () => {
             ease: [0.4, 0.0, 0.2, 1],
           },
         }}
-        className="w-screen flex flex-col md:flex-row justify-between items-center px-5 md:px-10 py-3 absolute z-10 bg-transparent"
+        className="w-screen flex flex-col md:flex-row justify-between items-center px-5 md:px-10 py-3 bg-transparent"
       >
         <div className="flex justify-between w-full md:w-auto items-center">
           <img src={aura} alt="Logo" className=" w-[10vw] h-auto" />
@@ -111,9 +116,18 @@ const Header = () => {
         </motion.div>
 
         {/* User Icon (only shown on md and larger screens) */}
-        <button className="hidden md:flex w-[10vw] justify-end">
-          <img src={profilegirl} alt="User Icon" className="w-16 h-16 rounded-full" />
-        </button>
+        {
+        !isAuthenticated?
+        <div className='flex flex-row gap-2'>
+          <button onClick={()=>navigate('/login')} className='px-4 py-2 border-2 rounded-md'>Login</button>
+          <button onClick={()=>navigate('/signup')} className='px-4 py-2 border-2 rounded-md'>Signup</button>
+        </div>:
+        <button onClick={()=>navigate('/Profile')} className="hidden md:flex w-[10vw] justify-end">
+        <img src={profilegirl} alt="User Icon" className="w-16 h-16 rounded-full" />
+      </button>
+      }
+        
+        
       </motion.div>
     </>
   );

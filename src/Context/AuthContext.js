@@ -1,13 +1,13 @@
 import React, { createContext, useState, useEffect } from 'react';
-const {authService} = require('../Services/authService.js'); // hypothetical service
+import { useNavigate } from 'react-router-dom';
+const { authService } = require('../Services/authService.js'); // hypothetical service
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    
-    
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const navigate = useNavigate(); // Correctly use the hook inside the component
 
     useEffect(() => {
         // Check for user authentication status on component mount
@@ -16,17 +16,21 @@ export const AuthProvider = ({ children }) => {
             authService.getUserProfile(token).then((userData) => {
                 setUser(userData);
                 setIsAuthenticated(true);
-            }).catch(() => {
+                console.log("useeffect true");
+            }).catch((error) => {
+                console.error("Failed to fetch user profile:", error);
                 setIsAuthenticated(false);
                 localStorage.removeItem('accessToken');
+                navigate('/');
+                console.log("useeffect false");
+                
             });
         }
-    }, []);
-    // console.log(user);
+    }, []); // Include 'navigate' in the dependency array
 
     const login = async (credentials) => {
         const response = await authService.login(credentials);
-        if (response.status=='200') {
+        if (response.status === 200) {
             setUser(response.user);
             setIsAuthenticated(true);
             localStorage.setItem('accessToken', response.data.accessToken);
@@ -37,7 +41,8 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         setUser(null);
         setIsAuthenticated(false);
-        localStorage.removeItem('authToken');
+        localStorage.removeItem('accessToken'); // Use the correct token key
+        navigate('/'); // Redirect after logout
     };
 
     return (

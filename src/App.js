@@ -10,27 +10,31 @@ import { BackgroundBeamsDemo } from './Pages/BackgroundBeamsDemo';
 import Layout from './Pages/Layout/Layout';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
+import Profile from './Pages/Profile/Profile';
 
 function App() {
   return (
-    <BrowserRouter>
+  <>
   {/* <Login/> */}
     {/* <Signup/> */}
-    {/* <Routes>
-      <Route path="/" element={<Signup/>} >
+    <Routes>
+      <Route path="/" element={<Layout/>} />
+      <Route path="/signup" element={<Signup/>} >
       <Route index element={<Email/>} />
       <Route path='password' element={<Password/>}/>
       <Route path='inviteFriends' element={<InviteFriend/>}/>
       <Route path='Avatar' element={<ProfilePic/>}/>
       </Route>
       <Route path="/login" element={<Login/>} />
-      <Route path="/HomePage" element={<Layout/>} />
+      <Route path="/homePage" element={<Layout/>} />
+      <Route path='/profile' element={<Profile/>}/>
 
-    </Routes> */}
+    </Routes>
     {/* <BackgroundBeamsDemo/> */}
-    <Layout/>
+    {/* <Layout/> */}
+  </>
   
-  </BrowserRouter>
+ 
 );
 }
 

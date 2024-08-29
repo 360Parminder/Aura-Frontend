@@ -21,7 +21,7 @@ const InviteFriend = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    navigate('/Avatar', { state: { ...location.state, inviteEmails } });
+    navigate('Avatar', { state: { ...location.state, inviteEmails } });
   }
 
   return (

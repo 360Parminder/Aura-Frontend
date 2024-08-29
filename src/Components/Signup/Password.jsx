@@ -58,7 +58,7 @@ const Password = () => {
         } else {
             setError(null);
             setConfirmError(null);
-            navigate('/inviteFriends', { state: { ...location.state, confirmPassword } });
+            navigate('inviteFriends', { state: { ...location.state, confirmPassword } });
         }
     };
 

@@ -27,11 +27,11 @@ const CardContainer = () => {
     <p className='text-[#999999]'>Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new</p>
    </motion.div>
    <div className=' flex flex-col md:flex-row items-center justify-center gap-5 w-screen h-[50vh] overflow-scroll appear'>
-    <CategoriesCard/>
-    <CategoriesCard/>
-    <CategoriesCard/>
-    <CategoriesCard/>
-    <CategoriesCard/>
+    <CategoriesCard categoryName={"action"}/>
+    <CategoriesCard categoryName={"adventure"}/>
+    <CategoriesCard categoryName={"Comedy"}/>
+    <CategoriesCard categoryName={"Drama"}/>
+    <CategoriesCard categoryName={"Horror"}/>
    </div>
    </div>
    </>
