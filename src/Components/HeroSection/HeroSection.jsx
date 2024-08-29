@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <>
     <HeroHighlight>
-    <motion.h1
+    <motion.div
         initial={{
           opacity: 0,
           y: 20,
@@ -25,7 +25,7 @@ const HeroSection = () => {
         <Highlight className="text-black dark:text-white">
         Stream the Latest Hits and Hidden Gems!
         </Highlight>
-      </motion.h1>
+      </motion.div>
     </HeroHighlight>
     </>
   )

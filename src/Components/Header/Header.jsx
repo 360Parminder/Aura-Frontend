@@ -12,7 +12,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {isAuthenticated} = useContext(AuthContext)
   // console.log(isAuthenticated);
-  
+
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
     setIsMenuOpen(false); // Close the menu when a button is clicked

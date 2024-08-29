@@ -23,7 +23,7 @@ const CategoriesCard = ({categoryName}) => {
        }}
     className='flex flex-col gap-5 rounded-md border-2 border-[#1A1A1A] px-5 py-4 backdrop-blur bg-transparent'>
         <div className=' grid grid-cols-2 gap-1'>
-            <img className='w-[100px] h-[100px] rounded-md' src={movie} alt="" />
+            <img className='w-[100px] h-[100px] rounded-md bg-cover' src={movie} alt="" />
             <img className='w-[100px] h-[100px] rounded-md' src={movie2} alt="" />
             <img className='w-[100px] h-[100px] rounded-md' src={movie} alt="" />
             <img className='w-[100px] h-[100px] rounded-md' src={movie} alt="" />

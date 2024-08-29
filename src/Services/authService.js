@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:9998';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+// console.log(API_BASE_URL);
+
 
 // Utility function to handle HTTP errors
 const handleResponse = async (response) => {
