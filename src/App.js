@@ -12,6 +12,8 @@ import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
 import Profile from './Pages/Profile/Profile';
 import Error from './Pages/Error';
+import Contact from './Pages/Contact/Contact';
+import MoviesShowsDashboard from './Pages/MoviesShowsDashboard/MoviesShowsDashboard';
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
       <Route path="/login" element={<Login/>} />
       <Route path="/homePage" element={<Layout/>} />
       <Route path='/profile' element={<Profile/>}/>
+      <Route path='/contact' element={<Contact/>}/>
+      <Route path='/moviesShowsDashboard' element={<MoviesShowsDashboard/>}/>
       <Route path='*' element={<Error/>}/>
 
     </Routes>

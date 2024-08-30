@@ -85,7 +85,7 @@ const Header = () => {
             className={`rounded-md px-2 md:px-4 py-1 md:py-2 ${
               activeButton === 'Home' ? 'bg-[#1A1A1A] text-white' : ''
             }`}
-            onClick={() => handleButtonClick('Home')}
+            onClick={() => [handleButtonClick('Home'),navigate('/')]}
           >
             Home
           </button>
@@ -93,7 +93,7 @@ const Header = () => {
             className={`rounded-md px-2 md:px-4 py-1 md:py-2 ${
               activeButton === 'Movies & Shows' ? 'bg-[#1A1A1A] text-white' : ''
             }`}
-            onClick={() => handleButtonClick('Movies & Shows')}
+            onClick={() => [handleButtonClick('Movies & Shows'),navigate('/moviesShowsDashboard')]}
           >
             Movies & Shows
           </button>

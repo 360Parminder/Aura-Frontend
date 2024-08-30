@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import twitter from '../../assets/images/twitter.png'
 import '../../Styles/Global.css'
 
 
 export default function Footer({ className = "" }) {
+  const navigate =useNavigate();
   return (
     <footer
       className={`font-manrope flex w-full flex-col gap-y-6 bg-neutral-950 px-10 pb-8 pt-24 text-lg leading-normal tracking-[0px] text-neutral-400  ${className}`}
@@ -21,7 +23,7 @@ export default function Footer({ className = "" }) {
          </div>
           <div className="w-52">
           <p className='mb-5 text-white' >Movies</p>
-          <p >Gernes</p>
+          <p >Genres</p>
           <p >Trending</p>
           <p >New Release</p>
           <p >Popular</p>
@@ -37,7 +39,7 @@ export default function Footer({ className = "" }) {
         <section className="flex flex-wrap items-start justify-center gap-y-[30px] min-[1910px]:flex-nowrap" >
         <div className="w-52">
         <p className='mb-5 text-white'  >Support</p>
-        <p>Contact Us</p>
+        <button onClick={()=>navigate('/contact')} className=''>Contact Us</button>
           </div>
         <div className="w-52">
           <p className="mb-5 text-white" >Subscription</p>

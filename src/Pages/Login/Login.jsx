@@ -10,9 +10,11 @@ import { BackgroundBeams } from '../../Components/ui/BackgroundBeams'
 import axios from 'axios'
 const {authService} = require('../../Services/authService')
 import { ErrorCard, SuccessCard } from '../../Components/Cards/NotificationCard/NotificationCard';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Login = () => {
     const navigate =useNavigate();
+    const { loginWithRedirect } = useAuth0();
     const [email,setEmail]=useState();
     const [password,setPassword]=useState();
     const [apiStatus, setApiStatus] = useState(null);
@@ -55,7 +57,7 @@ const Login = () => {
                         <p className='text-[#F0F8FF]'>Please enter your details for sign in.</p>
                         <div className='flex flex-row gap-5 '>
                             <button className='outlineButton'><img className='w-6 h-6' src={apple} alt="" /></button>
-                            <button className='outlineButton'><img className='w-6 h-6' src={google} alt="" /></button>
+                            <button onClick={()=>loginWithRedirect()} className='outlineButton'><img className='w-6 h-6' src={google} alt="" /></button>
                             <button className='outlineButton'><img className='w-6 h-6' src={twitter} alt="" /></button>
                         </div>
                     </div>
