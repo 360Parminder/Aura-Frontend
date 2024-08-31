@@ -1,5 +1,8 @@
 import { Carousel } from "../../Components/Carousel/Carousel";
-
+import thumbnail from '../../assets/images/thumbnail.webp'
+import thumbnail2 from '../../assets/images/tumbnail2.webp'
+import thumbnail3 from '../../assets/images/thumbnail3.webp'
+import thumbnail4 from '../../assets/images/thumbnail4.webp'
 
 export default function Component() {
   return (
@@ -12,14 +15,14 @@ export default function Component() {
               See all
             </a>
           </div>
-         <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory">
+         <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory my-10">
             <Carousel/>
          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <div className="rounded-lg overflow-hidden">
               <a href="#" className="block">
                 <img
-                  src="/placeholder.svg"
+                  src={thumbnail}
                   alt="Movie 1"
                   width={300}
                   height={170}
@@ -35,7 +38,7 @@ export default function Component() {
             <div className="rounded-lg overflow-hidden">
               <a href="#" className="block">
                 <img
-                  src="/placeholder.svg"
+                  src={thumbnail2}
                   alt="Movie 2"
                   width={300}
                   height={170}
@@ -51,7 +54,7 @@ export default function Component() {
             <div className="rounded-lg overflow-hidden">
               <a href="#" className="block">
                 <img
-                  src="/placeholder.svg"
+                  src={thumbnail3}
                   alt="Movie 3"
                   width={300}
                   height={170}
@@ -67,7 +70,7 @@ export default function Component() {
             <div className="rounded-lg overflow-hidden">
               <a href="#" className="block">
                 <img
-                  src="/placeholder.svg"
+                  src={thumbnail4}
                   alt="Movie 4"
                   width={300}
                   height={170}
@@ -89,14 +92,14 @@ export default function Component() {
               See all
             </a>
           </div>
-         <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory"> 
+         <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory mb-10"> 
 <Carousel/>
          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <div className="rounded-lg overflow-hidden">
               <a href="#" className="block">
                 <img
-                  src="/placeholder.svg"
+                  src={thumbnail}
                   alt="Show 1"
                   width={300}
                   height={170}
@@ -112,7 +115,7 @@ export default function Component() {
             <div className="rounded-lg overflow-hidden">
               <a href="#" className="block">
                 <img
-                  src="/placeholder.svg"
+                  src={thumbnail2}
                   alt="Show 2"
                   width={300}
                   height={170}
@@ -128,7 +131,7 @@ export default function Component() {
             <div className="rounded-lg overflow-hidden">
               <a href="#" className="block">
                 <img
-                  src="/placeholder.svg"
+                  src={thumbnail3}
                   alt="Show 3"
                   width={300}
                   height={170}
@@ -144,7 +147,7 @@ export default function Component() {
             <div className="rounded-lg overflow-hidden">
               <a href="#" className="block">
                 <img
-                  src="/placeholder.svg"
+                  src={thumbnail4}
                   alt="Show 4"
                   width={300}
                   height={170}

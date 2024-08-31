@@ -14,6 +14,7 @@ import Profile from './Pages/Profile/Profile';
 import Error from './Pages/Error';
 import Contact from './Pages/Contact/Contact';
 import MoviesShowsDashboard from './Pages/MoviesShowsDashboard/MoviesShowsDashboard';
+import Home from './Pages/Home/Home';
 
 
 function App() {
@@ -22,7 +23,10 @@ function App() {
   {/* <Login/> */}
     {/* <Signup/> */}
     <Routes>
-      <Route path="/" element={<Layout/>} />
+      <Route path="/" element={<Layout/>} >
+      <Route index element={<Home/>} />
+      <Route path='moviesShowsDashboard' element={<MoviesShowsDashboard/>}/>
+      </Route>
       <Route path="/signup" element={<Signup/>} >
       <Route index element={<Email/>} />
       <Route path='password' element={<Password/>}/>
@@ -30,10 +34,11 @@ function App() {
       <Route path='Avatar' element={<ProfilePic/>}/>
       </Route>
       <Route path="/login" element={<Login/>} />
-      <Route path="/homePage" element={<Layout/>} />
-      <Route path='/profile' element={<Profile/>}/>
+      <Route path="/homePage" element={<Layout/>}>
+      <Route index element={<Home/>} />
+      <Route path='profile' element={<Profile/>}/>
+      </Route>
       <Route path='/contact' element={<Contact/>}/>
-      <Route path='/moviesShowsDashboard' element={<MoviesShowsDashboard/>}/>
       <Route path='*' element={<Error/>}/>
 
     </Routes>

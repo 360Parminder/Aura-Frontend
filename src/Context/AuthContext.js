@@ -1,4 +1,4 @@
-import { Auth0Provider } from '@auth0/auth0-react';
+import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
 import React, { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 const { authService } = require('../Services/authService.js'); // hypothetical service
@@ -10,9 +10,7 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const navigate = useNavigate(); // Correctly use the hook inside the component
     const AUTH0_DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN;
-    const CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;
-    console.log(AUTH0_DOMAIN, CLIENT_ID);
-    
+    const CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;  
     // const REACT_APP_AUTH0_AUDIENCE = process.env.REACT_APP_AUTH0_AUDIENCE;
     const onRedirectCallback = (appState) => {
         console.log(appState);
@@ -39,13 +37,14 @@ export const AuthProvider = ({ children }) => {
             authService.getUserProfile(token).then((userData) => {
                 setUser(userData);
                 setIsAuthenticated(true);
-                console.log("useeffect true");
+                navigate('/homePage')
+                // console.log("useEffect true");
             }).catch((error) => {
                 console.error("Failed to fetch user profile:", error);
                 setIsAuthenticated(false);
                 localStorage.removeItem('accessToken');
                 navigate('/');
-                console.log("useeffect false");
+                console.log("useEffect false");
                 
             });
         }

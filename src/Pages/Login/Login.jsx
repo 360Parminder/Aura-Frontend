@@ -22,15 +22,21 @@ const Login = () => {
 
     const handleSubmit= async(e)=>{
         e.preventDefault();
-        const data = await authService.login({ userEmail:email, password });
-
-        if (data) {
-            console.log('Logged in successfully:', data);
-            setApiStatus('success')
-            navigate('/HomePage');
-        } else {
-         setApiStatus("error")
-        }
+       try {
+         const data = await authService.login({ userEmail:email, password });
+ 
+         if (data.success) {
+             console.log('Logged in successfully:', data);
+             setApiStatus('success')
+             navigate('/homePage');
+         } else {
+          setApiStatus("error")
+         //  navigate('*')
+         }
+       } catch (error) {
+        setApiStatus('error')
+        navigate('*')
+       }
     }
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -82,10 +88,10 @@ const Login = () => {
                                 <a className=' underline' href="#">Forgot password?</a>
                                </div>
                         </div>
-                        <button className='bg-[#7b2cbf] text-[#fff] px-[4px] py-[5px] rounded-md text-lg font-semibold mt-4'>Sign in</button>
+                        <button onClick={()=>handleSubmit} className='bg-[#7b2cbf] text-[#fff] px-[4px] py-[5px] rounded-md text-lg font-semibold mt-4'>Sign in</button>
                         <div className='flex flex-row items-center justify-center gap-2 mt-2'>
                             <p className='text-[#F0F8FF]'>Don't have an account yet?</p>
-                            <button onClick={()=>navigate('/')} className=' font-semibold' >Sign up</button>
+                            <button onClick={()=>navigate('/signup')} className=' font-semibold' >Sign up</button>
 
                         </div>
                     </form>

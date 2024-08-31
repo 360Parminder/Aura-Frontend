@@ -5,14 +5,14 @@ import '../../Styles/Global.css'
 import Footer from '../../Components/Footer/Footer'
 import Header from '../../Components/Header/Header'
 import HeroSection from '../../Components/HeroSection/HeroSection'
+import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
   return (
    <div className=' dotBackground'>
    <Header/>
    <main>
-   <HeroSection/>
-   <CardContainer/>
+    <Outlet/>
    </main>
    <Footer/>
    </div>

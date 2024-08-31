@@ -5,14 +5,17 @@ import profilegirl from '../../assets/images/profilegirl.jpeg'
 import profileboy from '../../assets/images/profileboy.jpeg'
 import { AuthContext } from '../../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Header = () => {
   const navigate =useNavigate();
   const [activeButton, setActiveButton] = useState('Home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const {isAuthenticated} = useContext(AuthContext)
+  // const {isAuthenticated} = useContext(AuthContext)
   // console.log(isAuthenticated);
-
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  console.log(user, isAuthenticated, isLoading);
+  
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
     setIsMenuOpen(false); // Close the menu when a button is clicked
@@ -93,7 +96,7 @@ const Header = () => {
             className={`rounded-md px-2 md:px-4 py-1 md:py-2 ${
               activeButton === 'Movies & Shows' ? 'bg-[#1A1A1A] text-white' : ''
             }`}
-            onClick={() => [handleButtonClick('Movies & Shows'),navigate('/moviesShowsDashboard')]}
+            onClick={() => [handleButtonClick('Movies & Shows'),navigate('moviesShowsDashboard')]}
           >
             Movies & Shows
           </button>
@@ -122,8 +125,8 @@ const Header = () => {
           <button onClick={()=>navigate('/login')} className='px-4 py-2 border-2 rounded-md'>Login</button>
           <button onClick={()=>navigate('/signup')} className='px-4 py-2 border-2 rounded-md'>Signup</button>
         </div>:
-        <button onClick={()=>navigate('/Profile')} className="hidden md:flex w-[10vw] justify-end">
-        <img src={profilegirl} alt="User Icon" className="w-16 h-16 rounded-full" />
+        <button onClick={()=>navigate('Profile')} className="hidden md:flex w-[10vw] justify-end">
+        <img src={user?user.picture:profilegirl} alt="User Icon" className="w-16 h-16 rounded-full" />
       </button>
       }
         
