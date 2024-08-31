@@ -15,6 +15,8 @@ import Error from './Pages/Error';
 import Contact from './Pages/Contact/Contact';
 import MoviesShowsDashboard from './Pages/MoviesShowsDashboard/MoviesShowsDashboard';
 import Home from './Pages/Home/Home';
+import VideoDetails from './Pages/VideoDetails/VideoDetails';
+import Player from './Pages/Player/Player';
 
 
 function App() {
@@ -26,7 +28,9 @@ function App() {
       <Route path="/" element={<Layout/>} >
       <Route index element={<Home/>} />
       <Route path='moviesShowsDashboard' element={<MoviesShowsDashboard/>}/>
+      <Route path='videoDetails' element={<VideoDetails/>}/>
       </Route>
+      <Route path="/player" element={<Player/>} />
       <Route path="/signup" element={<Signup/>} >
       <Route index element={<Email/>} />
       <Route path='password' element={<Password/>}/>

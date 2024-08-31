@@ -12,24 +12,24 @@ export const AuthProvider = ({ children }) => {
     const AUTH0_DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN;
     const CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;  
     // const REACT_APP_AUTH0_AUDIENCE = process.env.REACT_APP_AUTH0_AUDIENCE;
-    const onRedirectCallback = (appState) => {
-        console.log(appState);
-        const token = appState?.target?.id_token;
-        if (token) {
-            authService.getUserProfile(token).then((userData) => {
-                setUser(userData);
-                setIsAuthenticated(true);
-                console.log("useeffect true");
-            }).catch((error) => {
-                console.error("Failed to fetch user profile:", error);
-                setIsAuthenticated(false);
-                localStorage.removeItem('accessToken');
-                navigate('/');
-                console.log("useeffect false");
+    // const onRedirectCallback = (appState) => {
+    //     console.log(appState);
+    //     const token = appState?.target?.id_token;
+    //     if (token) {
+    //         authService.getUserProfile(token).then((userData) => {
+    //             setUser(userData);
+    //             setIsAuthenticated(true);
+    //             console.log("useeffect true");
+    //         }).catch((error) => {
+    //             console.error("Failed to fetch user profile:", error);
+    //             setIsAuthenticated(false);
+    //             localStorage.removeItem('accessToken');
+    //             navigate('/');
+    //             console.log("useeffect false");
                 
-            });
-        }
-    };
+    //         });
+    //     }
+    // };
     useEffect(() => {
         // Check for user authentication status on component mount
         const token = localStorage.getItem('accessToken');
