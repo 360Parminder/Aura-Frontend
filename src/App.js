@@ -17,6 +17,7 @@ import MoviesShowsDashboard from './Pages/MoviesShowsDashboard/MoviesShowsDashbo
 import Home from './Pages/Home/Home';
 import VideoDetails from './Pages/VideoDetails/VideoDetails';
 import Player from './Pages/Player/Player';
+import DownloadVideo from './Pages/Download/DownloadVideo';
 
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
       <Route path='moviesShowsDashboard' element={<MoviesShowsDashboard/>}/>
       <Route path='videoDetails' element={<VideoDetails/>}/>
       <Route path='profile' element={<Profile/>}/>
+      <Route path='downloadVideo' element={<DownloadVideo/>}/>
+      
       </Route>
       <Route path="/player" element={<Player/>} />
       <Route path="/signup" element={<Signup/>} >

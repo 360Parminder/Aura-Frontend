@@ -31,7 +31,7 @@ export default function VideoDetails() {
                         <p className="text-muted-foreground text-sm">2014 | 2h 49m</p>
                     </div>
                     <div className="flex items-center gap-4">
-                        <button className="outlineButton flex items-center gap-2">
+                        <button onClick={()=>navigate('/downloadVideo')} className="outlineButton flex items-center gap-2">
                             <DownloadIcon className="" />
                             Download
                         </button>

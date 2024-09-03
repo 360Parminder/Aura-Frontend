@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import HeroSection from '../../Components/HeroSection/HeroSection'
-import CardContainer from '../../Components/Cards/CardContainer/CardContainer'
 import { contentServices } from '../../Services/contentService'
 import { motion } from 'framer-motion'
 import '../../Styles/Global.css'
+import thumbnail from '../../assets/images/thumbnail.webp'
 const Home = () => {
 
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -26,9 +26,6 @@ const Home = () => {
     setPopularShows(response[5])
     setTopRatedShows(response[6])
     setUpcomingShows(response[7])
-
-
-    console.log(response);
   }
 
 
