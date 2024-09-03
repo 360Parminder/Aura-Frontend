@@ -3,39 +3,66 @@ import inception from '../../assets/images/inception.jpg'
 import { motion } from "framer-motion";
 import '../../Styles/Global.css'
 import { useNavigate } from 'react-router-dom';
+import { contentServices } from '../../Services/contentService';
+import { useEffect, useState } from 'react';
 export default function VideoDetails() {
-        const navigate =useNavigate();
+    const navigate = useNavigate();
+    const queryParams = new URLSearchParams(window.location.search);
+    const name = queryParams.get('name');
+    const id = queryParams.get('id');
+    console.log(name, id);
+
+    const [movieDetails, setMovieDetails] = useState([]);
+    const [movieData, setMovieData] = useState();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await contentServices.movieDetails(name)
+            setMovieDetails(response.contents)
+        }
+        fetchData()
+    }, [name])
+    console.log(movieDetails);
+    const movie = movieDetails?.find((movie) => movie._id == id);
+
+    if (movie) {
+        console.log('Found movie:', movie);
+        // setMovieData(movie);
+    } else {
+        console.log('No movie found with the specified _id');
+    }
+    // console.log(movieDetails);
     return (
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
             <div className="grid grid-cols-1 md:grid-cols-1 gap-8 md:gap-12">
                 <motion.div
-          initial={{
-            opacity: 0,
-            z: 100,
-            y: 100,
-            }}
-          animate={{
-            opacity: 1,
-            z: 0,
-            y: 0,
-            transition: {
-              duration: 1,
-              delay: 0.5,
-              ease: [0.4, 0.0, 0.2, 1],
-              },
-          }}
-                
-                className="flex flex-col gap-6 bg-black p-6 rounded-lg" style={{backgroundImage: `url(${interstellar})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                    initial={{
+                        opacity: 0,
+                        z: 100,
+                        y: 100,
+                    }}
+                    animate={{
+                        opacity: 1,
+                        z: 0,
+                        y: 0,
+                        transition: {
+                            duration: 1,
+                            delay: 0.5,
+                            ease: [0.4, 0.0, 0.2, 1],
+                        },
+                    }}
+
+                    className="flex flex-col gap-6 bg-black p-6 rounded-lg" style={{ backgroundImage: `url(${movie?.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     <div>
-                        <h1 className="text-3xl sm:text-4xl font-bold">Interstellar</h1>
-                        <p className="text-muted-foreground text-sm">2014 | 2h 49m</p>
+                        <h1 className="text-3xl sm:text-4xl font-bold">{movie?.original_title}</h1>
+                        <p className="text-muted-foreground text-sm">{movie?.release_date} | 2h 49m</p>
                     </div>
                     <div className="flex items-center gap-4">
-                        <button onClick={()=>navigate('/downloadVideo')} className="outlineButton flex items-center gap-2">
+                        <button onClick={()=>navigate(`/downloadVideo?name=${movie?.original_title}`)} className="outlineButton flex items-center gap-2">
                             <DownloadIcon className="" />
                             Download
                         </button>
-                        <button onClick={()=>navigate('/player')} className="outlineButton flex items-center gap-2">
+                        <button onClick={() => navigate('/player')} className="outlineButton flex items-center gap-2">
                             <PlayIcon className="" />
                             Play
                         </button>
@@ -43,61 +70,48 @@ export default function VideoDetails() {
                     <div className="grid gap-2">
                         <p className="text-muted-foreground">Available on:</p>
                         <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-2">
-                                <NetworkIcon className="w-6 h-6" />
-                                <span className="text-sm">Netflix</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <AppleIcon className="w-6 h-6" />
-                                <span className="text-sm">Amazon Prime</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <HdmiPortIcon className="w-6 h-6" />
-                                <span className="text-sm">Hulu</span>
-                            </div>
+                            {
+                                movie?.sources?.map((value, index) => {
+                                    return (
+                                        <a key={index} href={value?.link} target="_blank" className="flex items-center gap-2">
+                                            <NetworkIcon className="w-6 h-6" />
+                                            <span className="text-sm">{value?.display_name}</span>
+                                        </a>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
-                    <div className="grid gap-2">
+                    {/* <div className="grid gap-2">
                         <p className="text-muted-foreground">Cast:</p>
                         <div className="flex items-center gap-4">
                             <div className="flex items-center gap-2">
-                                {/* <Avatar className="w-8 h-8 border">
-                  <AvatarImage src="/placeholder-user.jpg" alt="Matthew McConaughey" />
-                  <AvatarFallback>MM</AvatarFallback>
-                </Avatar> */}
+
                                 <span className="text-sm">Matthew McConaughey</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                {/* <Avatar className="w-8 h-8 border">
-                  <AvatarImage src="/placeholder-user.jpg" alt="Anne Hathaway" />
-                  <AvatarFallback>AH</AvatarFallback>
-                </Avatar> */}
+
                                 <span className="text-sm">Anne Hathaway</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                {/* <Avatar className="w-8 h-8 border">
-                  <AvatarImage src="/placeholder-user.jpg" alt="Jessica Chastain" />
-                  <AvatarFallback>JC</AvatarFallback>
-                </Avatar> */}
+
                                 <span className="text-sm">Jessica Chastain</span>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="grid gap-2">
                         <p className="text-muted-foreground">Genre:</p>
                         <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-2">
-                                <FilmIcon className="w-4 h-4" />
-                                <span className="text-sm">Sci-Fi</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <FilmIcon className="w-4 h-4" />
-                                <span className="text-sm">Drama</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <FilmIcon className="w-4 h-4" />
-                                <span className="text-sm">Adventure</span>
-                            </div>
+                            {
+                                movie?.genres?.map((value, index) => {
+                                    return (
+                                        <div key={index} className="flex items-center gap-2">
+                                            <FilmIcon className="w-4 h-4" />
+                                            <span className="text-sm">{value}</span>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                 </motion.div>

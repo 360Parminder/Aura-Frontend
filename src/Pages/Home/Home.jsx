@@ -4,8 +4,9 @@ import { contentServices } from '../../Services/contentService'
 import { motion } from 'framer-motion'
 import '../../Styles/Global.css'
 import thumbnail from '../../assets/images/thumbnail.webp'
+import { Link, useNavigate } from 'react-router-dom'
 const Home = () => {
-
+  const navigate =useNavigate();
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
@@ -15,6 +16,7 @@ const Home = () => {
   const [topRatedShows, setTopRatedShows] = useState([]);
   const [upcomingShows, setUpcomingShows] = useState([]);
   // console.log("home");
+
 
   const fetchData = async () => {
     const response = await contentServices.home()
@@ -26,6 +28,8 @@ const Home = () => {
     setPopularShows(response[5])
     setTopRatedShows(response[6])
     setUpcomingShows(response[7])
+    console.log(response);
+    
   }
 
 
@@ -67,7 +71,7 @@ const Home = () => {
             trendingMovies?.movies?.slice(0, 8)?.map((value, index) => {
               return (
                 <div key={index} className="rounded-lg overflow-hidden appear">
-                  <a href={`videoDetails?${value?._id.toString()}`} className="block">
+                  <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}`)} className="block">
                     <img
                       src={value?.poster_path || thumbnail}
                       alt={value?.original_title || "thumbnail"}
@@ -80,7 +84,7 @@ const Home = () => {
                       <h3 className="text-lg font-semibold mb-1">{value?.original_title || "thumbnail"}</h3>
                       <p className="text-sm text-muted-foreground truncate-2-lines">{value?.overview || "thumbnail"}</p>
                     </div>
-                  </a>
+                  </button>
                 </div>
               )
             })
@@ -115,7 +119,7 @@ const Home = () => {
             trendingShows?.movies?.slice(0, 8)?.map((value, index) => {
               return (
                 <div key={index} className="rounded-lg overflow-hidden appear">
-                  <a href="videoDetails" className="block">
+                  <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}`)} className="block">
                     <img
                       src={value?.poster_path || thumbnail}
                       alt={value?.original_title || "thumbnail"}
@@ -128,7 +132,7 @@ const Home = () => {
                       <h3 className="text-lg font-semibold mb-1">{value?.original_title || "thumbnail"}</h3>
                       <p className="text-sm text-muted-foreground truncate-2-lines">{value?.overview || "thumbnail"}</p>
                     </div>
-                  </a>
+                  </button>
                 </div>
               )
             })

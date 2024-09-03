@@ -2,6 +2,8 @@ import axios from "axios"
 
 const VIDEO_API =process.env.REACT_APP_VIDEO_API
 const VIDEO_KEY =process.env.REACT_APP_VIDEO_KEY
+const DOWNLOAD_API =process.env.REACT_APP_DOWNLOAD_API
+const DOWNLOAD_KEY =process.env.REACT_APP_DOWNLOAD_KEY
 
 export const contentServices ={
     
@@ -56,5 +58,42 @@ export const contentServices ={
             console.log("error",error);
             return { success: false, message: error.message };
         }
-    }
+    },
+    movieDetails: async (name) => {
+        try {
+            const response = await axios.get(`${VIDEO_API}/search`, {
+                params: {
+                    query: name
+                },
+                headers: {
+                    'x-rapidapi-key': VIDEO_KEY,
+                    'x-rapidapi-host': 'movies-api14.p.rapidapi.com'
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.log("error", error);
+            return { success: false, message: error.message };
+        }
+    },
+    downloadVideo: async (name) => {
+        try {
+            const response = await axios.get(`${DOWNLOAD_API}/search`, {
+                params: {
+                    keywords: name,
+                    quantity: '10',
+                    page: '1'
+                  },
+                headers: {
+                    'x-rapidapi-key': DOWNLOAD_KEY,
+                    'x-rapidapi-host': 'movie-tv-music-search-and-download.p.rapidapi.com'
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.log("error", error);
+            return { success: false, message: error.message };
+        }
+    },
+    
 }

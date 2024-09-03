@@ -7,11 +7,12 @@ import '../../Styles/Global.css'
 import { motion } from "framer-motion";
 import { contentServices } from "../../Services/contentService";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function MoviesandShows() {
   const [movieData, setMovieData] = useState([]);
   const [showData, setShowData] = useState([]);
-  
+  const navigate = useNavigate();
   
   
   
@@ -73,7 +74,7 @@ export default function MoviesandShows() {
               },
             }}
 
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory my-10">
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory my-10 h-[80vh]">
             <Carousel data={movieData} />
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -81,7 +82,7 @@ export default function MoviesandShows() {
               movieData?.movies?.slice(4, 12)?.map((value, index) => {
                 return (
                   <div key={index} className="rounded-lg overflow-hidden appear">
-                    <a href="videoDetails" className="block">
+                    <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}`)} className="block">
                       <img
                         src={value?.poster_path}
                         alt={value?.original_title}
@@ -94,7 +95,7 @@ export default function MoviesandShows() {
                         <h3 className="text-lg font-semibold mb-1">{value?.original_title}</h3>
                         <p className="text-sm text-muted-foreground truncate-2-lines">{value?.overview}</p>
                       </div>
-                    </a>
+                    </button>
                   </div>
                 )
               })
