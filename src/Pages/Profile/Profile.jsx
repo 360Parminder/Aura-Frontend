@@ -3,9 +3,9 @@ import thumbnail from '../../assets/images/thumbnail.webp'
 import thumbnail2 from '../../assets/images/tumbnail2.webp'
 import thumbnail3 from '../../assets/images/thumbnail3.webp'
 import thumbnail4 from '../../assets/images/thumbnail4.webp'
-
-import '../../Styles/Global.css'
 // import { Progress } from "@/components/ui/progress"
+import '../../Styles/Global.css'
+
 export default function Profile() {
   return (
     <div className="w-full mx-auto py-8 px-4 md:px-6 dotBackground">

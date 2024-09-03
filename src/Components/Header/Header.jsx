@@ -14,7 +14,7 @@ const Header = () => {
   // const {isAuthenticated} = useContext(AuthContext)
   // console.log(isAuthenticated);
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(user, isAuthenticated, isLoading);
+  // console.log(user, isAuthenticated, isLoading);
   
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);

@@ -29,6 +29,7 @@ function App() {
       <Route index element={<Home/>} />
       <Route path='moviesShowsDashboard' element={<MoviesShowsDashboard/>}/>
       <Route path='videoDetails' element={<VideoDetails/>}/>
+      <Route path='profile' element={<Profile/>}/>
       </Route>
       <Route path="/player" element={<Player/>} />
       <Route path="/signup" element={<Signup/>} >
@@ -38,10 +39,9 @@ function App() {
       <Route path='Avatar' element={<ProfilePic/>}/>
       </Route>
       <Route path="/login" element={<Login/>} />
-      <Route path="/homePage" element={<Layout/>}>
+      {/* <Route path="/homePage" element={<Layout/>}>
       <Route index element={<Home/>} />
-      <Route path='profile' element={<Profile/>}/>
-      </Route>
+      </Route> */}
       <Route path='/contact' element={<Contact/>}/>
       <Route path='*' element={<Error/>}/>
 
