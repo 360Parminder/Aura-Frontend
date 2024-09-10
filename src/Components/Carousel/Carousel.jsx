@@ -19,7 +19,7 @@ export function Carousel({data}) {
           return(
             <div key={index} className="embla__slide">
             <div className="rounded-lg overflow-hidden">
-                  <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}`)} className="block">
+                  <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}&type=${value?.contentType}`)} className="block">
                     <img
                       src={value?.backdrop_path}
                       alt={value?.original_title}

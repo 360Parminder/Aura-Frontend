@@ -71,7 +71,7 @@ const Home = () => {
             trendingMovies?.movies?.slice(0, 8)?.map((value, index) => {
               return (
                 <div key={index} className="rounded-lg overflow-hidden appear">
-                  <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}`)} className="block">
+                  <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}&type=${value?.contentType}`)} className="block">
                     <img
                       src={value?.poster_path || thumbnail}
                       alt={value?.original_title || "thumbnail"}
@@ -119,7 +119,7 @@ const Home = () => {
             trendingShows?.movies?.slice(0, 8)?.map((value, index) => {
               return (
                 <div key={index} className="rounded-lg overflow-hidden appear">
-                  <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}`)} className="block">
+                  <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}&type=${value?.contentType}`)} className="block">
                     <img
                       src={value?.poster_path || thumbnail}
                       alt={value?.original_title || "thumbnail"}

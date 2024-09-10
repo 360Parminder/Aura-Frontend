@@ -82,7 +82,7 @@ export default function MoviesandShows() {
               movieData?.movies?.slice(4, 12)?.map((value, index) => {
                 return (
                   <div key={index} className="rounded-lg overflow-hidden appear">
-                    <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}`)} className="block">
+                    <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}&type=${value?.contentType}`)} className="block">
                       <img
                         src={value?.poster_path}
                         alt={value?.original_title}
@@ -109,7 +109,7 @@ export default function MoviesandShows() {
               See all
             </a>
           </div>
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory mb-10 appear">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory mb-10 h-[80vh] appear">
             <Carousel data={showData} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -119,7 +119,7 @@ export default function MoviesandShows() {
                 showData?.movies?.slice(4, 12)?.map((value,index)=>{
                   return(
                     <div key={index} className="rounded-lg overflow-hidden appear">
-                    <a href="videoDetails" className="block">
+                    <button onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}&type=${value?.contentType}`)}  className="block">
                       <img
                         src={value?.poster_path}
                         alt={value?.original_title}
@@ -131,7 +131,7 @@ export default function MoviesandShows() {
                         <h3 className="text-lg font-semibold mb-1">{value?.original_title}</h3>
                         <p className="text-sm text-muted-foreground truncate-2-lines">{value?.overview}</p>
                       </div>
-                    </a>
+                    </button>
                   </div>
                   )
                 })

@@ -10,28 +10,36 @@ export default function VideoDetails() {
     const queryParams = new URLSearchParams(window.location.search);
     const name = queryParams.get('name');
     const id = queryParams.get('id');
+    const type = queryParams.get('type');
     console.log(name, id);
 
     const [movieDetails, setMovieDetails] = useState([]);
-    const [movieData, setMovieData] = useState();
+    const [similarMovies, setSimilarMovies] = useState(null);
+    const [seasons, setSeasons] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await contentServices.movieDetails(name)
-            setMovieDetails(response.contents)
+            try {
+                if (type == "movie") {
+                    const response = await contentServices.similarMovies(id);
+                    setMovieDetails(response?.movie)
+                    setSimilarMovies(response?.similarMovies)
+                    console.log("Similar movies:", response);
+
+                }
+                else if (type == "show") {
+                    const response = await contentServices.seasons(id);
+                    // setShowDetails(response?.show)
+                    setMovieDetails(response?.show)
+                    setSeasons(response?.seasons)
+                    console.log("show:", response);
+                }
+            } catch (error) {
+
+            }
         }
         fetchData()
-    }, [name])
-    console.log(movieDetails);
-    const movie = movieDetails?.find((movie) => movie._id == id);
-
-    if (movie) {
-        console.log('Found movie:', movie);
-        // setMovieData(movie);
-    } else {
-        console.log('No movie found with the specified _id');
-    }
-    // console.log(movieDetails);
+    }, [])
     return (
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
             <div className="grid grid-cols-1 md:grid-cols-1 gap-8 md:gap-12">
@@ -52,13 +60,13 @@ export default function VideoDetails() {
                         },
                     }}
 
-                    className="flex flex-col gap-6 bg-black p-6 rounded-lg" style={{ backgroundImage: `url(${movie?.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    className="flex flex-col gap-6 bg-black p-6 rounded-lg" style={{ backgroundImage: `url(${movieDetails?.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     <div>
-                        <h1 className="text-3xl sm:text-4xl font-bold">{movie?.original_title}</h1>
-                        <p className="text-muted-foreground text-sm">{movie?.release_date} | 2h 49m</p>
+                        <h1 className="text-3xl sm:text-4xl font-bold">{movieDetails?.original_title}</h1>
+                        <p className="text-muted-foreground text-sm">{movieDetails?.release_date ? movieDetails?.release_date : movieDetails?.first_aired} | 2h 49m</p>
                     </div>
                     <div className="flex items-center gap-4">
-                        <button onClick={()=>navigate(`/downloadVideo?name=${movie?.original_title}`)} className="outlineButton flex items-center gap-2">
+                        <button onClick={() => navigate(`/downloadVideo?name=${movieDetails?.original_title}`)} className="outlineButton flex items-center gap-2">
                             <DownloadIcon className="" />
                             Download
                         </button>
@@ -71,7 +79,7 @@ export default function VideoDetails() {
                         <p className="text-muted-foreground">Available on:</p>
                         <div className="flex items-center gap-4">
                             {
-                                movie?.sources?.map((value, index) => {
+                                movieDetails?.sources?.map((value, index) => {
                                     return (
                                         <a key={index} href={value?.link} target="_blank" className="flex items-center gap-2">
                                             <NetworkIcon className="w-6 h-6" />
@@ -103,7 +111,7 @@ export default function VideoDetails() {
                         <p className="text-muted-foreground">Genre:</p>
                         <div className="flex items-center gap-4">
                             {
-                                movie?.genres?.map((value, index) => {
+                                movieDetails?.genres?.map((value, index) => {
                                     return (
                                         <div key={index} className="flex items-center gap-2">
                                             <FilmIcon className="w-4 h-4" />
@@ -128,159 +136,78 @@ export default function VideoDetails() {
 
 
                 <div className="w-full gap-4 mt-10 appear">
-                    <h2 className="text-2xl font-bold mb-10">Related Movies</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                        <a href="#" className="group" prefetch={false}>
-                            <div className="relative overflow-hidden rounded-lg">
-                                <img
-                                    src={inception}
-                                    alt="Inception"
-                                    width={300}
-                                    height={450}
-                                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                                    style={{ aspectRatio: "300/450", objectFit: "cover" }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
-                                    <div className="text-white text-sm font-medium">Inception</div>
+                    {
+                        similarMovies ?
+                            <>
+                                <h2 className="text-2xl font-bold mb-10">Related Movies</h2>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    {
+                                        similarMovies?.slice(0, 12)?.map((value, index) => {
+                                            return (
+                                                <a key={index} href="#" className="group" prefetch={false}>
+                                                    <div className="relative overflow-hidden rounded-lg">
+                                                        <img
+                                                            src={value?.poster_path}
+                                                            alt={value?.original_title}
+                                                            width={300}
+                                                            height={450}
+                                                            className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                                                            style={{ aspectRatio: "300/450", objectFit: "cover" }}
+                                                        />
+                                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                                                            <div className="text-white text-sm font-medium">{value?.original_title}</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            )
+                                        })
+                                    }
                                 </div>
-                            </div>
-                        </a>
-                        <a href="#" className="group" prefetch={false}>
-                            <div className="relative overflow-hidden rounded-lg">
-                                <img
-                                    src={inception}
-                                    alt="Gravity"
-                                    width={300}
-                                    height={450}
-                                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                                    style={{ aspectRatio: "300/450", objectFit: "cover" }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
-                                    <div className="text-white text-sm font-medium">Gravity</div>
+                            </> :
+                            <>
+                                <h2 className="text-2xl font-bold mb-10">Show Seasons</h2>
+                                    
+                                    {
+                                        seasons?.map((value,index)=>{
+                                            return(
+                                                <>
+                                                <h2 className="text-2xl font-bold mb-10">Season : {value?.season}</h2>
+                                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    {
+                                        value?.episodes?.map((value, index) => {
+                                            return (
+                                                <a key={index} href="#" className="group" prefetch={false}>
+                                                    <div className="relative overflow-hidden rounded-lg">
+                                                        <img
+                                                            src={value?.thumbnail_path}
+                                                            alt={value?.title}
+                                                            width={300}
+                                                            height={450}
+                                                            className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                                                            style={{ aspectRatio: "300/450", objectFit: "cover" }}
+                                                        />
+                                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                                                            <div className="text-white text-sm font-medium">{value?.title}</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            )
+                                        })
+                                    }
                                 </div>
-                            </div>
-                        </a>
-                        <a href="#" className="group" prefetch={false}>
-                            <div className="relative overflow-hidden rounded-lg">
-                                <img
-                                    src={inception}
-                                    alt="The Martian"
-                                    width={300}
-                                    height={450}
-                                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                                    style={{ aspectRatio: "300/450", objectFit: "cover" }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
-                                    <div className="text-white text-sm font-medium">The Martian</div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" className="group" prefetch={false}>
-                            <div className="relative overflow-hidden rounded-lg">
-                                <img
-                                    src={inception}
-                                    alt="The Martian"
-                                    width={300}
-                                    height={450}
-                                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                                    style={{ aspectRatio: "300/450", objectFit: "cover" }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
-                                    <div className="text-white text-sm font-medium">The Martian</div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" className="group" prefetch={false}>
-                            <div className="relative overflow-hidden rounded-lg">
-                                <img
-                                    src={inception}
-                                    alt="The Martian"
-                                    width={300}
-                                    height={450}
-                                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                                    style={{ aspectRatio: "300/450", objectFit: "cover" }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
-                                    <div className="text-white text-sm font-medium">The Martian</div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" className="group" prefetch={false}>
-                            <div className="relative overflow-hidden rounded-lg">
-                                <img
-                                    src={inception}
-                                    alt="The Martian"
-                                    width={300}
-                                    height={450}
-                                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                                    style={{ aspectRatio: "300/450", objectFit: "cover" }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
-                                    <div className="text-white text-sm font-medium">The Martian</div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" className="group" prefetch={false}>
-                            <div className="relative overflow-hidden rounded-lg">
-                                <img
-                                    src={inception}
-                                    alt="The Martian"
-                                    width={300}
-                                    height={450}
-                                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                                    style={{ aspectRatio: "300/450", objectFit: "cover" }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
-                                    <div className="text-white text-sm font-medium">The Martian</div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" className="group" prefetch={false}>
-                            <div className="relative overflow-hidden rounded-lg">
-                                <img
-                                    src={inception}
-                                    alt="The Martian"
-                                    width={300}
-                                    height={450}
-                                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                                    style={{ aspectRatio: "300/450", objectFit: "cover" }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
-                                    <div className="text-white text-sm font-medium">The Martian</div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" className="group" prefetch={false}>
-                            <div className="relative overflow-hidden rounded-lg">
-                                <img
-                                    src={inception}
-                                    alt="The Martian"
-                                    width={300}
-                                    height={450}
-                                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                                    style={{ aspectRatio: "300/450", objectFit: "cover" }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
-                                    <div className="text-white text-sm font-medium">The Martian</div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" className="group" prefetch={false}>
-                            <div className="relative overflow-hidden rounded-lg">
-                                <img
-                                    src={inception}
-                                    alt="The Martian"
-                                    width={300}
-                                    height={450}
-                                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                                    style={{ aspectRatio: "300/450", objectFit: "cover" }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
-                                    <div className="text-white text-sm font-medium">The Martian</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                                                </>
+                                            )
+                                        })
+                                    }
+                               
+                                
+                            </>
+
+                    }
+
+
+
+
 
 
                 </div>
