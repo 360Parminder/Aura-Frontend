@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import Cookies from "js-cookie";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 // console.log(API_BASE_URL);
 
@@ -36,16 +36,35 @@ export const authService = {
             return { success: false, message: error.message };
         }
     },
+    googleLogin: async (user) => {
+        try {
+            const response = await axios.post(`${API_BASE_URL}/googleLogin`,
+                {
+                    ...user
+                }, {
+                withCredentials: true
+            });
+            // console.log(response);
+
+            // const data = await handleResponse(response);
+            if (response.data) {
+                return { success: true, message: "successfully" };
+            }
+        } catch (error) {
+            return { success: false, message: error.message };
+        }
+    },
 
     signup: async (userData) => {
         // console.log(userData);
         try {
             const response = await axios.post(`${API_BASE_URL}/registerUser`,
                 { ...userData });
-                // console.log(response);
-                
+            // console.log(response);
+
             const data = await handleResponse(response);
             if (data) {
+
                 return { success: true, message: "successfully" };
             }
         } catch (error) {
@@ -60,14 +79,16 @@ export const authService = {
 
     getUserProfile: async () => {
         try {
-            const token = localStorage.getItem('accessToken');
+            const token = Cookies.get('accessToken') || localStorage.getItem('accessToken');
             if (!token) throw new Error('No token found');
 
-            const response = await axios.get(`${API_BASE_URL}/profileUser?${token}`, {
-                withCredentials: true
+            const response = await axios.get(`${API_BASE_URL}/profileUser?accessToken=${token}`, {
+                withCredentials: true,
+                
+            },{
+               
             });
-
-            return await handleResponse(response);
+            return response.data;
         } catch (error) {
             return { success: false, message: error.message };
         }

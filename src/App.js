@@ -18,21 +18,19 @@ import Home from './Pages/Home/Home';
 import VideoDetails from './Pages/VideoDetails/VideoDetails';
 import Player from './Pages/Player/Player';
 import DownloadVideo from './Pages/Download/DownloadVideo';
+import { AuthProvider } from './Context/AuthContext';
 
 
 function App() {
   return (
-  <>
-  {/* <Login/> */}
-    {/* <Signup/> */}
-    <Routes>
+   
+ <Routes>
       <Route path="/" element={<Layout/>} >
       <Route index element={<Home/>} />
       <Route path='moviesShowsDashboard' element={<MoviesShowsDashboard/>}/>
       <Route path='videoDetails' element={<VideoDetails/>}/>
       <Route path='profile' element={<Profile/>}/>
       <Route path='downloadVideo' element={<DownloadVideo/>}/>
-      
       </Route>
       <Route path="/player" element={<Player/>} />
       <Route path="/signup" element={<Signup/>} >
@@ -42,16 +40,10 @@ function App() {
       <Route path='Avatar' element={<ProfilePic/>}/>
       </Route>
       <Route path="/login" element={<Login/>} />
-      {/* <Route path="/homePage" element={<Layout/>}>
-      <Route index element={<Home/>} />
-      </Route> */}
       <Route path='/contact' element={<Contact/>}/>
       <Route path='*' element={<Error/>}/>
 
     </Routes>
-    {/* <BackgroundBeamsDemo/> */}
-    {/* <Layout/> */}
-  </>
   
  
 );

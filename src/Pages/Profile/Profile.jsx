@@ -5,8 +5,11 @@ import thumbnail3 from '../../assets/images/thumbnail3.webp'
 import thumbnail4 from '../../assets/images/thumbnail4.webp'
 // import { Progress } from "@/components/ui/progress"
 import '../../Styles/Global.css'
+import { useContext } from 'react'
+import { AuthContext } from '../../Context/AuthContext'
 
 export default function Profile() {
+  const { userData } = useContext(AuthContext);
   return (
     <div className="w-full mx-auto py-8 px-4 md:px-6 dotBackground">
       <div className="grid gap-8">
@@ -14,7 +17,7 @@ export default function Profile() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full overflow-hidden">
-                    <img className=' w-full h-full' src={profilegirl4} alt="Avatar" />
+                    <img className=' w-full h-full' src={userData?.avatar} alt="Avatar" />
               </div>
               {/* <Avatar className="w-12 h-12">
                 <AvatarImage src="/placeholder-user.jpg" alt="John Doe" />
@@ -26,11 +29,11 @@ export default function Profile() {
                   <div className="px-2 py-1 bg-primary text-primary-foreground rounded-full text-xs font-medium">
                     Pro
                   </div>
-                  <div className="text-muted-foreground text-sm">Parminder@gmail.com</div>
+                  <div className="text-muted-foreground text-sm">{userData?.email}</div>
                 </div>
               </div>
             </div>
-            <div className="text-muted-foreground text-sm">Admin</div>
+            <div className="text-muted-foreground text-sm">{userData?.role}</div>
           </div>
         </div>
         <div>

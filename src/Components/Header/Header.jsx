@@ -1,21 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import aura from '../../assets/images/Aura.png'
-import profilegirl from '../../assets/images/profilegirl.jpeg'
-import profileboy from '../../assets/images/profileboy.jpeg'
-import { AuthContext } from '../../Context/AuthContext';
+import aura from '../../assets/images/Aura.png';
+import profilegirl from '../../assets/images/profilegirl.jpeg';
 import { useNavigate } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
+import { AuthContext } from '../../Context/AuthContext';
 
 const Header = () => {
-  const navigate =useNavigate();
+  const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState('Home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const {isAuthenticated} = useContext(AuthContext)
-  // console.log(isAuthenticated);
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  // console.log(user, isAuthenticated, isLoading);
-  
+  const [user, setUser] = useState(null);
+
+  const { userData } = useContext(AuthContext);
+
+  // Update user state when userData changes
+  useEffect(() => {
+    if (userData) {
+      setUser(userData);
+    }
+  }, [userData]);
+
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
     setIsMenuOpen(false); // Close the menu when a button is clicked
@@ -69,26 +73,24 @@ const Header = () => {
 
         {/* Navigation Bar: Always shown on md and larger screens */}
         <motion.div
-        
-        initial={{
-          opacity: 0,
-          y: -100,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          transition: {
-            duration: 1,
-            delay: 0.5,
-            ease: [0.4, 0.0, 0.2, 1],
-          },
-        }}
-        className={`md:flex ${isMenuOpen ? 'flex' : 'hidden'} flex-col md:flex-row justify-between w-full md:w-2/5 rounded-md border-2 border-[#1A1A1A] px-3 py-2 md:px-5 md:py-3 mt-2 md:mt-0`}>
+          initial={{
+            opacity: 0,
+            y: -100,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 1,
+              delay: 0.5,
+              ease: [0.4, 0.0, 0.2, 1],
+            },
+          }}
+          className={`md:flex ${isMenuOpen ? 'flex' : 'hidden'} flex-col md:flex-row justify-between w-full md:w-2/5 rounded-md border-2 border-[#1A1A1A] px-3 py-2 md:px-5 md:py-3 mt-2 md:mt-0`}
+        >
           <button
-            className={`rounded-md px-2 md:px-4 py-1 md:py-2 ${
-              activeButton === 'Home' ? 'bg-[#1A1A1A] text-white' : ''
-            }`}
-            onClick={() => [handleButtonClick('Home'),navigate('/')]}
+            className={`rounded-md px-2 md:px-4 py-1 md:py-2 ${activeButton === 'Home' ? 'bg-[#1A1A1A] text-white' : ''}`}
+            onClick={() => [handleButtonClick('Home'), navigate('/')]}
           >
             Home
           </button>
@@ -96,7 +98,7 @@ const Header = () => {
             className={`rounded-md px-2 md:px-4 py-1 md:py-2 ${
               activeButton === 'Movies & Shows' ? 'bg-[#1A1A1A] text-white' : ''
             }`}
-            onClick={() => [handleButtonClick('Movies & Shows'),navigate('moviesShowsDashboard')]}
+            onClick={() => [handleButtonClick('Movies & Shows'), navigate('moviesShowsDashboard')]}
           >
             Movies & Shows
           </button>
@@ -104,7 +106,7 @@ const Header = () => {
             className={`rounded-md px-2 md:px-4 py-1 md:py-2 ${
               activeButton === 'Support' ? 'bg-[#1A1A1A] text-white' : ''
             }`}
-            onClick={() => handleButtonClick('Support')}
+            onClick={() => [handleButtonClick('Support'), navigate('/support')]}
           >
             Support
           </button>
@@ -119,18 +121,20 @@ const Header = () => {
         </motion.div>
 
         {/* User Icon (only shown on md and larger screens) */}
-        {
-        !isAuthenticated?
-        <div className='flex flex-row gap-2'>
-          <button onClick={()=>navigate('/login')} className='px-4 py-2 border-2 rounded-md'>Login</button>
-          <button onClick={()=>navigate('/signup')} className='px-4 py-2 border-2 rounded-md'>Signup</button>
-        </div>:
-        <button onClick={()=>navigate('Profile')} className="hidden md:flex w-[10vw] justify-end">
-        <img src={user?user.picture:profilegirl} alt="User Icon" className="w-16 h-16 rounded-full" />
-      </button>
-      }
-        
-        
+        {!user ? (
+          <div className="flex flex-row gap-2">
+            <button onClick={() => navigate('/login')} className="px-4 py-2 border-2 rounded-md">
+              Login
+            </button>
+            <button onClick={() => navigate('/signup')} className="px-4 py-2 border-2 rounded-md">
+              Signup
+            </button>
+          </div>
+        ) : (
+          <button onClick={() => navigate('Profile')} className="hidden md:flex w-[10vw] justify-end">
+            <img src={user?.avatar || profilegirl} alt="User Icon" className="w-16 h-16 rounded-full" />
+          </button>
+        )}
       </motion.div>
     </>
   );
