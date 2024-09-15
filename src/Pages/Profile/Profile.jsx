@@ -33,7 +33,7 @@ export default function Profile() {
                 </div>
               </div>
             </div>
-            <div className="text-muted-foreground text-sm">{userData?.role}</div>
+            <div className="bg-white rounded-lg"><p className=' capitalize text-black mx-2'>{userData?.role}</p></div>
           </div>
         </div>
         <div>
