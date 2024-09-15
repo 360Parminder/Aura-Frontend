@@ -7,9 +7,17 @@ import thumbnail4 from '../../assets/images/thumbnail4.webp'
 import '../../Styles/Global.css'
 import { useContext } from 'react'
 import { AuthContext } from '../../Context/AuthContext'
+import { authService } from '../../Services/authService'
+import { useNavigate } from 'react-router-dom'
 
 export default function Profile() {
   const { userData } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const logout = () => {
+    authService.logout();
+    // window.location.reload();
+    navigate('/');
+  };
   return (
     <div className="w-full mx-auto py-8 px-4 md:px-6 dotBackground">
       <div className="grid gap-8">
@@ -33,7 +41,10 @@ export default function Profile() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg"><p className=' capitalize text-black mx-2'>{userData?.role}</p></div>
+            <div className=" flex flex-col justify-center items-center gap-3">
+              <p className='bg-white rounded-lg capitalize text-black px-2 py-1'>{userData?.role}</p>
+              <button onClick={() => {logout()}} className="bg-white rounded-lg capitalize text-black px-2 py-1">Logout</button>
+              </div>
           </div>
         </div>
         <div>

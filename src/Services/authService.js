@@ -1,5 +1,7 @@
 import axios from "axios";
+import { navigate } from "ionicons/icons";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 // console.log(API_BASE_URL);
 
@@ -12,7 +14,6 @@ const handleResponse = async (response) => {
     }
     return response.data;
 };
-
 export const authService = {
     login: async (credentials) => {
         // console.log(credentials);
@@ -44,11 +45,9 @@ export const authService = {
                 }, {
                 withCredentials: true
             });
-            // console.log(response);
-
-            // const data = await handleResponse(response);
             if (response.data) {
-                return { success: true, message: "successfully" };
+                localStorage.setItem('accessToken', response.data.accessToken);
+                return {data:response, success: true, message: "successfully" };
             }
         } catch (error) {
             return { success: false, message: error.message };
@@ -75,6 +74,7 @@ export const authService = {
     logout: () => {
         // Clear the token from localStorage
         localStorage.removeItem('accessToken');
+        Cookies.remove('accessToken');
     },
 
     getUserProfile: async () => {

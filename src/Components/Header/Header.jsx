@@ -48,7 +48,9 @@ const Header = () => {
         className="w-screen flex flex-col md:flex-row justify-between items-center px-5 md:px-10 py-3 bg-transparent"
       >
         <div className="flex justify-between w-full md:w-auto items-center">
-          <img src={aura} alt="Logo" className=" w-[10vw] h-auto" />
+          <button onClick={() => navigate('/')} className="w-[10vw] h-auto">
+            <img src={aura} alt="Logo" />
+          </button>
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button onClick={toggleMenu} className="text-gray-800 focus:outline-none">

@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
             const googleLogin = async (user) => {
                 try {
                     const response = await authService.googleLogin(user);
+                    // console.log(response);
                     if (response.success) {
                         const profileData = await authService.getUserProfile();
                         setUserData(profileData?.user);
