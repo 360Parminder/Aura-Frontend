@@ -4,7 +4,7 @@ import { contentServices } from '../../Services/contentService'
 import { motion } from 'framer-motion'
 import '../../Styles/Global.css'
 import thumbnail from '../../assets/images/thumbnail.webp'
-import { Link, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 const Home = () => {
   const navigate =useNavigate();
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -15,7 +15,6 @@ const Home = () => {
   const [popularShows, setPopularShows] = useState([]);
   const [topRatedShows, setTopRatedShows] = useState([]);
   const [upcomingShows, setUpcomingShows] = useState([]);
-  // console.log("home");
 
 
   const fetchData = async () => {
@@ -28,7 +27,6 @@ const Home = () => {
     setPopularShows(response[5])
     setTopRatedShows(response[6])
     setUpcomingShows(response[7])
-    console.log(response);
     
   }
 

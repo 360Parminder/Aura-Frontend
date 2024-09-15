@@ -20,7 +20,6 @@ export const contentServices = {
             return response.data
 
         } catch (error) {
-            console.log("error", error);
             return { success: false, message: error.message };
         }
     },
@@ -38,7 +37,7 @@ export const contentServices = {
             return response.data
 
         } catch (error) {
-            console.log("error", error);
+         
             return { success: false, message: error.message };
         }
     },
@@ -55,7 +54,7 @@ export const contentServices = {
             return response.data
 
         } catch (error) {
-            console.log("error", error);
+           
             return { success: false, message: error.message };
         }
     },
@@ -72,7 +71,7 @@ export const contentServices = {
             });
             return response.data;
         } catch (error) {
-            console.log("error", error);
+           
             return { success: false, message: error.message };
         }
     },
@@ -86,7 +85,7 @@ export const contentServices = {
             });
             return response.data;
         } catch (error) {
-            console.log("error", error);
+         
             return { success: false, message: error.message };
         }
     },
@@ -100,7 +99,7 @@ export const contentServices = {
             });
             return response.data;
         } catch (error) {
-            console.log("error", error);
+            
             return { success: false, message: error.message };
         }
     },
@@ -119,7 +118,7 @@ export const contentServices = {
             });
             return response.data;
         } catch (error) {
-            console.log("error", error);
+            
             return { success: false, message: error.message };
         }
     },
