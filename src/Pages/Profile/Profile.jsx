@@ -15,9 +15,9 @@ export default function Profile() {
   const navigate = useNavigate();
   const logout = () => {
     authService.logout();
-    // window.location.reload();
-    navigate('/');
+    window.location.href = '/'; // Or redirect to home page
   };
+  
   return (
     <div className="w-full mx-auto py-8 px-4 md:px-6 dotBackground">
       <div className="grid gap-8">
@@ -32,7 +32,7 @@ export default function Profile() {
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar> */}
               <div className="grid gap-1">
-                <h2 className="text-2xl font-bold">Parminder Singh</h2>
+                <h2 className="text-2xl font-bold">{userData?.firstName+" "+userData?.lastName}</h2>
                 <div className="flex items-center gap-2">
                   <div className="px-2 py-1 bg-primary text-primary-foreground rounded-full text-xs font-medium">
                     Pro

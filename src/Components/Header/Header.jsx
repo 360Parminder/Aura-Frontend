@@ -108,7 +108,7 @@ const Header = () => {
             className={`rounded-md px-2 md:px-4 py-1 md:py-2 ${
               activeButton === 'Support' ? 'bg-[#1A1A1A] text-white' : ''
             }`}
-            onClick={() => [handleButtonClick('Support'), navigate('/support')]}
+            onClick={() => [handleButtonClick('Support'), navigate('/contact')]}
           >
             Support
           </button>
