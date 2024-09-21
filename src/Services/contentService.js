@@ -122,5 +122,22 @@ export const contentServices = {
             return { success: false, message: error.message };
         }
     },
+    search:async(query)=>{
+        try {
+            const response = await axios.get(`${VIDEO_API}/search`, {
+                params: {
+                    query: query
+                },
+                headers: {
+                    'x-rapidapi-key': VIDEO_KEY,
+                    'x-rapidapi-host': 'movies-api14.p.rapidapi.com'
+                }
+            });
+            return response.data;
+        } catch (error) {
+            
+            return { success: false, message: error.message };
+        }
+    },
 
 }

@@ -2,17 +2,34 @@ import React, { useContext, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import aura from '../../assets/images/Aura.png';
 import profilegirl from '../../assets/images/profilegirl.jpeg';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthContext';
 
 const Header = () => {
   const navigate = useNavigate();
-  const [activeButton, setActiveButton] = useState('Home');
+  const [activeButton, setActiveButton] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
 
   const { userData } = useContext(AuthContext);
+  const location = useLocation();
 
+  // console.log(location);
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setActiveButton('Home');
+    } else if (location.pathname === '/moviesShowsDashboard') {
+      setActiveButton('Movies & Shows');
+    } else if (location.pathname === '/Search') {
+      setActiveButton('Search');
+    } else if (location.pathname === '/subscriptions') {
+      setActiveButton('Subscriptions');
+    }
+    else {
+      setActiveButton(null);
+    }
+  }, [location]);
+  
   // Update user state when userData changes
   useEffect(() => {
     if (userData) {
@@ -106,11 +123,11 @@ const Header = () => {
           </button>
           <button
             className={`rounded-md px-2 md:px-4 py-1 md:py-2 ${
-              activeButton === 'Support' ? 'bg-[#1A1A1A] text-white' : ''
+              activeButton === 'Search' ? 'bg-[#1A1A1A] text-white' : ''
             }`}
-            onClick={() => [handleButtonClick('Support'), navigate('/contact')]}
+            onClick={() => [handleButtonClick('Search'), navigate('/Search')]}
           >
-            Support
+            Search
           </button>
           <button
             className={`rounded-md px-2 md:px-4 py-1 md:py-2 ${

@@ -20,6 +20,7 @@ import Player from './Pages/Player/Player';
 import DownloadVideo from './Pages/Download/DownloadVideo';
 import { AuthProvider } from './Context/AuthContext';
 import ScrollToTop from './Utils/ScrollToTop';
+import Search from './Pages/Search/Search';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Route path='videoDetails' element={<VideoDetails/>}/>
       <Route path='profile' element={<Profile/>}/>
       <Route path='downloadVideo' element={<DownloadVideo/>}/>
+      <Route path='Search' element={<Search/>}/>
       </Route>
       <Route path="/player" element={<Player/>} />
       <Route path="/signup" element={<Signup/>} >
