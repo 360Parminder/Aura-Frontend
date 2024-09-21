@@ -19,11 +19,13 @@ import VideoDetails from './Pages/VideoDetails/VideoDetails';
 import Player from './Pages/Player/Player';
 import DownloadVideo from './Pages/Download/DownloadVideo';
 import { AuthProvider } from './Context/AuthContext';
+import ScrollToTop from './Utils/ScrollToTop';
 
 
 function App() {
   return (
-   
+   <>
+   <ScrollToTop />
  <Routes>
       <Route path="/" element={<Layout/>} >
       <Route index element={<Home/>} />
@@ -45,6 +47,7 @@ function App() {
 
     </Routes>
   
+   </>
  
 );
 }

@@ -144,7 +144,7 @@ export default function VideoDetails() {
                                     {
                                         similarMovies?.slice(0, 12)?.map((value, index) => {
                                             return (
-                                                <a key={index} href="#" className="group" prefetch={false}>
+                                                <button key={index} onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}&type=${value?.contentType}`)} className="group" prefetch={false}>
                                                     <div className="relative overflow-hidden rounded-lg">
                                                         <img
                                                             src={value?.poster_path}
@@ -158,7 +158,7 @@ export default function VideoDetails() {
                                                             <div className="text-white text-sm font-medium">{value?.original_title}</div>
                                                         </div>
                                                     </div>
-                                                </a>
+                                                </button>
                                             )
                                         })
                                     }
@@ -176,7 +176,7 @@ export default function VideoDetails() {
                                     {
                                         value?.episodes?.map((value, index) => {
                                             return (
-                                                <a key={index} href="#" className="group" prefetch={false}>
+                                                <button key={index} onClick={()=>navigate(`/videoDetails?name=${value?.original_title}&id=${value?._id}&type=${value?.contentType}`)} className="group" prefetch={false}>
                                                     <div className="relative overflow-hidden rounded-lg">
                                                         <img
                                                             src={value?.thumbnail_path}
@@ -190,7 +190,7 @@ export default function VideoDetails() {
                                                             <div className="text-white text-sm font-medium">{value?.title}</div>
                                                         </div>
                                                     </div>
-                                                </a>
+                                                </button>
                                             )
                                         })
                                     }

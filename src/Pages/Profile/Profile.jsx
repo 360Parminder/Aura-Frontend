@@ -32,7 +32,7 @@ export default function Profile() {
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar> */}
               <div className="grid gap-1">
-                <h2 className="text-2xl font-bold">{userData?.firstName+" "+userData?.lastName}</h2>
+                <h2 className="text-2xl font-bold capitalize">{userData?.firstName+" "+userData?.lastName}</h2>
                 <div className="flex items-center gap-2">
                   <div className="px-2 py-1 bg-primary text-primary-foreground rounded-full text-xs font-medium">
                     Pro
