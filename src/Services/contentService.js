@@ -4,6 +4,8 @@ const VIDEO_API = process.env.REACT_APP_VIDEO_API
 const VIDEO_KEY = process.env.REACT_APP_VIDEO_KEY
 const DOWNLOAD_API = process.env.REACT_APP_DOWNLOAD_API
 const DOWNLOAD_KEY = process.env.REACT_APP_DOWNLOAD_KEY
+const PLAYER_API = process.env.REACT_APP_PLAYER_API
+const PLAYER_KEY = process.env.REACT_APP_PLAYER_KEY
 
 export const contentServices = {
 
@@ -134,6 +136,24 @@ export const contentServices = {
                 }
             });
             return response.data;
+        } catch (error) {
+            
+            return { success: false, message: error.message };
+        }
+    },
+    player: async (name) => {
+        try {
+            const response = await axios.get(`${PLAYER_API}/search`, {
+                params: {
+                    query: name
+                },
+                headers: {
+                    'x-rapidapi-key': PLAYER_KEY,
+                     'x-rapidapi-host': 'advance-movie-api.p.rapidapi.com'
+                }
+            });
+            return response.data;
+
         } catch (error) {
             
             return { success: false, message: error.message };

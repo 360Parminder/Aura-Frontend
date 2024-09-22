@@ -7,6 +7,8 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 
     const [userData, setUserData] = useState(null);
+   
+
     const { user, isAuthenticated, isLoading } = useAuth0();
 
     const token = Cookies.get('accessToken') || localStorage.getItem('accessToken');

@@ -11,7 +11,7 @@ export default function VideoDetails() {
     const name = queryParams.get('name');
     const id = queryParams.get('id');
     const type = queryParams.get('type');
-    console.log(name, id);
+    // console.log(name, id);
 
     const [movieDetails, setMovieDetails] = useState([]);
     const [similarMovies, setSimilarMovies] = useState(null);
@@ -24,7 +24,7 @@ export default function VideoDetails() {
                     const response = await contentServices.similarMovies(id);
                     setMovieDetails(response?.movie)
                     setSimilarMovies(response?.similarMovies)
-                    console.log("Similar movies:", response);
+                    // console.log("Similar movies:", response);
 
                 }
                 else if (type == "show") {
@@ -32,7 +32,7 @@ export default function VideoDetails() {
                     // setShowDetails(response?.show)
                     setMovieDetails(response?.show)
                     setSeasons(response?.seasons)
-                    console.log("show:", response);
+                    // console.log("show:", response);
                 }
             } catch (error) {
 
@@ -70,7 +70,7 @@ export default function VideoDetails() {
                             <DownloadIcon className="" />
                             Download
                         </button>
-                        <button onClick={() => navigate('/player')} className="outlineButton flex items-center gap-2">
+                        <button onClick={() => navigate(`/player?name=${movieDetails?.original_title}&id=${movieDetails?._id}&year=${movieDetails?.release_date}`)} className="outlineButton flex items-center gap-2">
                             <PlayIcon className="" />
                             Play
                         </button>

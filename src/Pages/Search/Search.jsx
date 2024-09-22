@@ -14,9 +14,8 @@ const Search = () => {
 
     const fetchTrending = async () => {
         try {
-            // Uncomment when you have contentService.home() implemented
-            // const response = await contentServices.home();
-            // console.log(response[0].movies);
+            const response = await contentServices.home();
+            setMovies(response[0].movies);
         } catch (error) {
             console.error('Error fetching trending:', error);
         }
